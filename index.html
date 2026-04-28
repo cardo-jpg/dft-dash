@@ -264,7 +264,7 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
   .header-inner{ padding:20px 16px; }
 }
 
-/* ── META SECTION ─────────────────────────────────────────── */
+
 .meta-camp-row {
   display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:0;
 }
@@ -338,6 +338,96 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
 }
 .pill-f  { background:rgba(24,119,242,0.2); color:#93c5fd; }
 .pill-f2 { background:rgba(168,85,247,0.2); color:#d8b4fe; }
+
+
+/* ── META SECTION ────────────────────────────────────────────────────── */
+.meta-kpi-strip {
+  display:grid; grid-template-columns:repeat(7,1fr); gap:10px; margin-bottom:14px;
+}
+.meta-kpi-card {
+  background:var(--card); border:1px solid var(--border); border-radius:12px;
+  padding:16px 14px; position:relative; overflow:hidden;
+}
+.meta-kpi-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px; border-radius:12px 12px 0 0;
+}
+.meta-kpi-card.invest::before  { background:var(--orange); }
+.meta-kpi-card.viz::before     { background:#1877f2; }
+.meta-kpi-card.hook::before    { background:#f59e0b; }
+.meta-kpi-card.ret::before     { background:#a855f7; }
+.meta-kpi-card.imp::before     { background:#4285f4; }
+.meta-kpi-card.clk::before     { background:#34a853; }
+.meta-kpi-card.cpm::before     { background:#ea4335; }
+
+.mkpi-label { font-size:0.62rem; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.mkpi-value { font-size:1.4rem; font-weight:900; letter-spacing:-0.5px; line-height:1; }
+.mkpi-value.orange { color:var(--orange); }
+.mkpi-value.gold   { color:#f59e0b; }
+.mkpi-value.purple { color:#a855f7; }
+.mkpi-bench {
+  font-size:0.58rem; color:var(--muted2); margin-top:6px; line-height:1.5;
+}
+.mkpi-bench b { color:rgba(255,255,255,0.55); }
+
+.creatives-grid-wrap {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
+}
+.creative-card {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:20px; position:relative; overflow:hidden;
+  transition:transform .2s, box-shadow .2s;
+}
+.creative-card:hover { transform:translateY(-3px); box-shadow:0 8px 28px rgba(0,0,0,0.4); }
+.creative-card.cv1::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,#1877f2,#42a5f5); border-radius:14px 14px 0 0;
+}
+.creative-card.cv2::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,#7928ca,#a855f7); border-radius:14px 14px 0 0;
+}
+.cr-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px; }
+.cr-name { font-size:0.85rem; font-weight:800; line-height:1.3; }
+.cr-sub  { font-size:0.68rem; color:var(--muted); margin-top:3px; }
+
+.cr-rates { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px; }
+.cr-rate {
+  background:var(--card-alt); border:1px solid var(--border);
+  border-radius:10px; padding:10px 12px;
+}
+.cr-rate-lbl { font-size:0.6rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+.cr-rate-val { font-size:1.15rem; font-weight:900; }
+.cr-rate-val.bad    { color:#ef4444; }
+.cr-rate-val.medio  { color:#f59e0b; }
+.cr-rate-val.bom    { color:#6ee7b7; }
+.cr-rate-val.otimo  { color:#34d399; }
+.cr-rate-bench { font-size:0.55rem; color:var(--muted2); margin-top:3px; line-height:1.4; }
+
+.cr-funnel { display:flex; align-items:center; gap:4px; padding-top:12px; border-top:1px solid var(--border); }
+.cr-fstep { flex:1; text-align:center; }
+.cr-fstep-lbl { font-size:0.58rem; color:var(--muted); font-weight:700; text-transform:uppercase; margin-bottom:3px; }
+.cr-fstep-val { font-size:0.88rem; font-weight:900; }
+.cr-farrow { color:var(--muted2); font-size:0.85rem; flex-shrink:0; }
+
+.cr-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-bottom:12px; }
+.cr-stat { text-align:center; }
+.cr-stat-lbl { font-size:0.58rem; color:var(--muted); font-weight:700; text-transform:uppercase; }
+.cr-stat-val { font-size:0.82rem; font-weight:800; margin-top:1px; }
+
+/* camp summary cards */
+.meta-camp-sum { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px; }
+.meta-sum-card {
+  background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px 20px;
+  position:relative; overflow:hidden;
+}
+.meta-sum-card.sv1::before { content:''; position:absolute; top:0;left:0;right:0;height:3px; background:linear-gradient(90deg,#1877f2,#42a5f5); border-radius:14px 14px 0 0; }
+.meta-sum-card.sv2::before { content:''; position:absolute; top:0;left:0;right:0;height:3px; background:linear-gradient(90deg,#7928ca,#a855f7); border-radius:14px 14px 0 0; }
+.ms-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.ms-title { font-size:0.9rem; font-weight:800; }
+.ms-invest { font-size:1.2rem; font-weight:900; color:var(--orange); }
+.ms-metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+.ms-m-lbl { font-size:0.6rem; color:var(--muted); font-weight:700; text-transform:uppercase; }
+.ms-m-val { font-size:0.88rem; font-weight:800; margin-top:2px; }
 
 </style>
 </head>
@@ -558,153 +648,289 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
   </div>
 
 
+
   <!-- META ADS SECTION -->
-  <div class="sec-label" style="margin-top:36px;">Meta Ads — Brand Awareness</div>
+  <div class="sec-label" style="margin-top:36px;">Meta Ads — Brand Awareness · 27/04/2026</div>
 
   <!-- KPI strip Meta -->
-  <div class="kpi-strip" style="margin-bottom:14px;">
-    <div class="kpi-card" style="--c:#1877f2;">
-      <div class="kpi-label">Investido</div>
-      <div class="kpi-value orange">R$ 23,00</div>
-      <div class="kpi-sub">27/04/2026 · 1 dia</div>
+  <div class="meta-kpi-strip">
+    <div class="meta-kpi-card invest">
+      <div class="mkpi-label">Investido</div>
+      <div class="mkpi-value orange">R$ 23,00</div>
     </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Impressões</div>
-      <div class="kpi-value">6.696</div>
-      <div class="kpi-sub">alcance: 6.602</div>
+    <div class="meta-kpi-card viz">
+      <div class="mkpi-label">Visualizações</div>
+      <div class="mkpi-value">136</div>
     </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Visualizações</div>
-      <div class="kpi-value">136</div>
-      <div class="kpi-sub">CTR: 2,03%</div>
+    <div class="meta-kpi-card hook">
+      <div class="mkpi-label">Hook Rate</div>
+      <div class="mkpi-value gold">9.2%</div>
+      <div class="mkpi-bench">ruim &lt;30% · médio 30–45%<br/><b>bom 45–60% · ótimo &gt;60%</b></div>
     </div>
-    <div class="kpi-card leads">
-      <div class="kpi-label">Visualiz. 3s+</div>
-      <div class="kpi-value">615</div>
-      <div class="kpi-sub">taxa: 9,18%</div>
+    <div class="meta-kpi-card ret">
+      <div class="mkpi-label">Retenção 25%</div>
+      <div class="mkpi-value purple">49.8%</div>
+      <div class="mkpi-bench">ruim &lt;20% · médio 20–35%<br/><b>bom 35–50% · ótimo &gt;50%</b></div>
     </div>
-    <div class="kpi-card cpc">
-      <div class="kpi-label">Interações</div>
-      <div class="kpi-value">680</div>
-      <div class="kpi-sub">curtidas, saves, shares</div>
+    <div class="meta-kpi-card imp">
+      <div class="mkpi-label">Impressões</div>
+      <div class="mkpi-value">6,696</div>
     </div>
-    <div class="kpi-card">
-      <div class="kpi-label">25% assistido</div>
-      <div class="kpi-value">306</div>
-      <div class="kpi-sub">75%: 97 views</div>
+    <div class="meta-kpi-card clk">
+      <div class="mkpi-label">Interações</div>
+      <div class="mkpi-value">680</div>
+    </div>
+    <div class="meta-kpi-card cpm">
+      <div class="mkpi-label">CPM</div>
+      <div class="mkpi-value">R$ 3,43</div>
     </div>
   </div>
 
-  <!-- Campaign cards Meta -->
-  <div class="meta-camp-row" style="margin-bottom:14px;">
-    <div class="meta-camp-card f">
-      <div class="meta-icon">📘</div>
-      <div class="camp-plat">Meta Ads · Instagram</div>
-      <div class="camp-name">DFT_Visitas_F <span class="camp-pill pill-f">V1</span></div>
-      <div style="font-size:0.75rem;color:var(--muted);margin-bottom:4px;">3 criativos · Público Aberto</div>
-      <div class="camp-val">R$ 11,00</div>
-      <div class="meta-kpi-row">
-        <div><div class="meta-kpi-lbl">Impressões</div><div class="meta-kpi-val">3.359</div></div>
-        <div><div class="meta-kpi-lbl">Vizual. 3s</div><div class="meta-kpi-val">190</div></div>
-        <div><div class="meta-kpi-lbl">25% assist.</div><div class="meta-kpi-val">83</div></div>
-        <div><div class="meta-kpi-lbl">75% assist.</div><div class="meta-kpi-val">36</div></div>
+  <!-- Campaign summaries -->
+  <div class="meta-camp-sum">
+    <div class="meta-sum-card sv1">
+      <div class="ms-header">
+        <div class="ms-title">DFT_Visitas_F <span class="camp-pill pill-f">V1</span></div>
+        <div class="ms-invest">R$ 11,00</div>
       </div>
-      <div class="video-funnel">
-        <div class="vf-step"><div class="vf-lbl">Imp.</div><div class="vf-val" style="color:var(--orange)">3.359</div></div>
-        <div class="vf-arrow">›</div>
-        <div class="vf-step"><div class="vf-lbl">3s+</div><div class="vf-val" style="color:#60a5fa">190</div></div>
-        <div class="vf-arrow">›</div>
-        <div class="vf-step"><div class="vf-lbl">25%</div><div class="vf-val" style="color:#a78bfa">83</div></div>
-        <div class="vf-arrow">›</div>
-        <div class="vf-step"><div class="vf-lbl">75%</div><div class="vf-val" style="color:#6ee7b7">36</div></div>
+      <div class="ms-metrics">
+        <div><div class="ms-m-lbl">Impressões</div><div class="ms-m-val">3,359</div></div>
+        <div><div class="ms-m-lbl">Viz. 3s</div><div class="ms-m-val">190</div></div>
+        <div><div class="ms-m-lbl">Hook Rate</div><div class="ms-m-val bad">5.7%</div></div>
+        <div><div class="ms-m-lbl">Retenção</div><div class="ms-m-val bom">43.7%</div></div>
       </div>
     </div>
-    <div class="meta-camp-card f2">
-      <div class="meta-icon">📗</div>
-      <div class="camp-plat">Meta Ads · Instagram</div>
-      <div class="camp-name">DFT_Visitas_F_V2 <span class="camp-pill pill-f2">V2</span></div>
-      <div style="font-size:0.75rem;color:var(--muted);margin-bottom:4px;">3 criativos · Público Aberto</div>
-      <div class="camp-val">R$ 12,00</div>
-      <div class="meta-kpi-row">
-        <div><div class="meta-kpi-lbl">Impressões</div><div class="meta-kpi-val">3.337</div></div>
-        <div><div class="meta-kpi-lbl">Vizual. 3s</div><div class="meta-kpi-val">425</div></div>
-        <div><div class="meta-kpi-lbl">25% assist.</div><div class="meta-kpi-val">223</div></div>
-        <div><div class="meta-kpi-lbl">75% assist.</div><div class="meta-kpi-val">61</div></div>
+    <div class="meta-sum-card sv2">
+      <div class="ms-header">
+        <div class="ms-title">DFT_Visitas_F_V2 <span class="camp-pill pill-f2">V2</span></div>
+        <div class="ms-invest">R$ 12,00</div>
       </div>
-      <div class="video-funnel">
-        <div class="vf-step"><div class="vf-lbl">Imp.</div><div class="vf-val" style="color:var(--orange)">3.337</div></div>
-        <div class="vf-arrow">›</div>
-        <div class="vf-step"><div class="vf-lbl">3s+</div><div class="vf-val" style="color:#60a5fa">425</div></div>
-        <div class="vf-arrow">›</div>
-        <div class="vf-step"><div class="vf-lbl">25%</div><div class="vf-val" style="color:#a78bfa">223</div></div>
-        <div class="vf-arrow">›</div>
-        <div class="vf-step"><div class="vf-lbl">75%</div><div class="vf-val" style="color:#6ee7b7">61</div></div>
+      <div class="ms-metrics">
+        <div><div class="ms-m-lbl">Impressões</div><div class="ms-m-val">3,337</div></div>
+        <div><div class="ms-m-lbl">Viz. 3s</div><div class="ms-m-val">425</div></div>
+        <div><div class="ms-m-lbl">Hook Rate</div><div class="ms-m-val bad">12.7%</div></div>
+        <div><div class="ms-m-lbl">Retenção</div><div class="ms-m-val otimo">52.5%</div></div>
       </div>
     </div>
   </div>
 
-  <!-- Creatives table -->
-  <div class="creatives-wrap">
-    <div class="creatives-grid">
-      <!-- Header -->
-      <div class="cg-cell header">Criativo</div>
-      <div class="cg-cell header" style="text-align:right">Invest.</div>
-      <div class="cg-cell header" style="text-align:right">Impressões</div>
-      <div class="cg-cell header" style="text-align:right">Vizualizações</div>
-      <div class="cg-cell header" style="text-align:right">Alcance</div>
-      <div class="cg-cell header" style="text-align:right">Viz. 3s</div>
-      <div class="cg-cell header" style="text-align:right">25%</div>
-      <div class="cg-cell header" style="text-align:right">75%</div>
-      <!-- F rows -->
-      <div class="cg-cell name cg-row-f">AD01 — Deixa Eu Te Falar <span class="camp-pill pill-f">V1</span></div>
-      <div class="cg-cell num cg-row-f">R$ 7</div>
-      <div class="cg-cell num cg-row-f">2.302</div>
-      <div class="cg-cell num cg-row-f">44</div>
-      <div class="cg-cell num cg-row-f">2.222</div>
-      <div class="cg-cell num cg-row-f">122</div>
-      <div class="cg-cell num cg-row-f">46</div>
-      <div class="cg-cell num cg-row-f">22</div>
-      <div class="cg-cell name cg-row-f">AD02 — Por Trás <span class="camp-pill pill-f">V1</span></div>
-      <div class="cg-cell num cg-row-f">R$ 1</div>
-      <div class="cg-cell num cg-row-f">224</div>
-      <div class="cg-cell num cg-row-f">9</div>
-      <div class="cg-cell num cg-row-f">223</div>
-      <div class="cg-cell num cg-row-f">21</div>
-      <div class="cg-cell num cg-row-f">13</div>
-      <div class="cg-cell num cg-row-f">3</div>
-      <div class="cg-cell name cg-row-f">AD03 — E Se Sua Carga <span class="camp-pill pill-f">V1</span></div>
-      <div class="cg-cell num cg-row-f">R$ 3</div>
-      <div class="cg-cell num cg-row-f">833</div>
-      <div class="cg-cell num cg-row-f">11</div>
-      <div class="cg-cell num cg-row-f">826</div>
-      <div class="cg-cell num cg-row-f">47</div>
-      <div class="cg-cell num cg-row-f">24</div>
-      <div class="cg-cell num cg-row-f">11</div>
-      <!-- F2 rows -->
-      <div class="cg-cell name cg-row-f2">AD06 — Caminhão <span class="camp-pill pill-f2">V2</span></div>
-      <div class="cg-cell num cg-row-f2">R$ 9</div>
-      <div class="cg-cell num cg-row-f2">2.608</div>
-      <div class="cg-cell num cg-row-f2">64</div>
-      <div class="cg-cell num cg-row-f2">2.608</div>
-      <div class="cg-cell num cg-row-f2" style="color:#6ee7b7;font-weight:800">370</div>
-      <div class="cg-cell num cg-row-f2" style="color:#a78bfa;font-weight:800">197</div>
-      <div class="cg-cell num cg-row-f2" style="color:#6ee7b7;font-weight:800">54</div>
-      <div class="cg-cell name cg-row-f2">AD07 — DFT <span class="camp-pill pill-f2">V2</span></div>
-      <div class="cg-cell num cg-row-f2">R$ 3</div>
-      <div class="cg-cell num cg-row-f2">634</div>
-      <div class="cg-cell num cg-row-f2">7</div>
-      <div class="cg-cell num cg-row-f2">628</div>
-      <div class="cg-cell num cg-row-f2">50</div>
-      <div class="cg-cell num cg-row-f2">22</div>
-      <div class="cg-cell num cg-row-f2">6</div>
-      <div class="cg-cell name cg-row-f2">AD08 — Log. Barata <span class="camp-pill pill-f2">V2</span></div>
-      <div class="cg-cell num cg-row-f2">R$ 0</div>
-      <div class="cg-cell num cg-row-f2">95</div>
-      <div class="cg-cell num cg-row-f2">1</div>
-      <div class="cg-cell num cg-row-f2">95</div>
-      <div class="cg-cell num cg-row-f2">5</div>
-      <div class="cg-cell num cg-row-f2">4</div>
-      <div class="cg-cell num cg-row-f2">1</div>
+  <!-- Creative cards -->
+  <div class="creatives-grid-wrap">
+
+    <div class="creative-card cv1">
+      <div class="cr-top">
+        <div>
+          <div class="cr-name">AD01 — Deixa Eu Te Falar</div>
+          <div class="cr-sub">DFT_Visitas_F &nbsp;<span class="camp-pill pill-f">V1</span></div>
+        </div>
+        <div style="font-size:1rem;font-weight:900;color:var(--orange)">R$ 7,00</div>
+      </div>
+      <div class="cr-stats">
+        <div class="cr-stat"><div class="cr-stat-lbl">Impressões</div><div class="cr-stat-val">2,302</div></div>
+        <div class="cr-stat"><div class="cr-stat-lbl">Alcance</div><div class="cr-stat-val">2,222</div></div>
+        <div class="cr-stat"><div class="cr-stat-lbl">Interações</div><div class="cr-stat-val">138</div></div>
+      </div>
+      <div class="cr-rates">
+        <div class="cr-rate">
+          <div class="cr-rate-lbl">Hook Rate</div>
+          <div class="cr-rate-val bad">5.3%</div>
+          <div class="cr-rate-bench">ruim &lt;30% · médio 30–45%<br/>bom 45–60% · ótimo &gt;60%</div>
+        </div>
+        <div class="cr-rate">
+          <div class="cr-rate-lbl">Retenção 25%</div>
+          <div class="cr-rate-val bom">37.7%</div>
+          <div class="cr-rate-bench">ruim &lt;20% · médio 20–35%<br/>bom 35–50% · ótimo &gt;50%</div>
+        </div>
+      </div>
+      <div class="cr-funnel">
+        <div class="cr-fstep"><div class="cr-fstep-lbl">Imp.</div><div class="cr-fstep-val" style="color:var(--orange)">2,302</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">Viz. 3s</div><div class="cr-fstep-val" style="color:#60a5fa">122</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">25%</div><div class="cr-fstep-val" style="color:#a78bfa">46</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">75%</div><div class="cr-fstep-val" style="color:#6ee7b7">22</div></div>
+      </div>
+    </div>
+
+    <div class="creative-card cv1">
+      <div class="cr-top">
+        <div>
+          <div class="cr-name">AD02 — Por Trás</div>
+          <div class="cr-sub">DFT_Visitas_F &nbsp;<span class="camp-pill pill-f">V1</span></div>
+        </div>
+        <div style="font-size:1rem;font-weight:900;color:var(--orange)">R$ 1,00</div>
+      </div>
+      <div class="cr-stats">
+        <div class="cr-stat"><div class="cr-stat-lbl">Impressões</div><div class="cr-stat-val">224</div></div>
+        <div class="cr-stat"><div class="cr-stat-lbl">Alcance</div><div class="cr-stat-val">223</div></div>
+        <div class="cr-stat"><div class="cr-stat-lbl">Interações</div><div class="cr-stat-val">23</div></div>
+      </div>
+      <div class="cr-rates">
+        <div class="cr-rate">
+          <div class="cr-rate-lbl">Hook Rate</div>
+          <div class="cr-rate-val bad">9.4%</div>
+          <div class="cr-rate-bench">ruim &lt;30% · médio 30–45%<br/>bom 45–60% · ótimo &gt;60%</div>
+        </div>
+        <div class="cr-rate">
+          <div class="cr-rate-lbl">Retenção 25%</div>
+          <div class="cr-rate-val otimo">61.9%</div>
+          <div class="cr-rate-bench">ruim &lt;20% · médio 20–35%<br/>bom 35–50% · ótimo &gt;50%</div>
+        </div>
+      </div>
+      <div class="cr-funnel">
+        <div class="cr-fstep"><div class="cr-fstep-lbl">Imp.</div><div class="cr-fstep-val" style="color:var(--orange)">224</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">Viz. 3s</div><div class="cr-fstep-val" style="color:#60a5fa">21</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">25%</div><div class="cr-fstep-val" style="color:#a78bfa">13</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">75%</div><div class="cr-fstep-val" style="color:#6ee7b7">3</div></div>
+      </div>
+    </div>
+
+    <div class="creative-card cv1">
+      <div class="cr-top">
+        <div>
+          <div class="cr-name">AD03 — E Se Sua Carga</div>
+          <div class="cr-sub">DFT_Visitas_F &nbsp;<span class="camp-pill pill-f">V1</span></div>
+        </div>
+        <div style="font-size:1rem;font-weight:900;color:var(--orange)">R$ 3,00</div>
+      </div>
+      <div class="cr-stats">
+        <div class="cr-stat"><div class="cr-stat-lbl">Impressões</div><div class="cr-stat-val">833</div></div>
+        <div class="cr-stat"><div class="cr-stat-lbl">Alcance</div><div class="cr-stat-val">826</div></div>
+        <div class="cr-stat"><div class="cr-stat-lbl">Interações</div><div class="cr-stat-val">50</div></div>
+      </div>
+      <div class="cr-rates">
+        <div class="cr-rate">
+          <div class="cr-rate-lbl">Hook Rate</div>
+          <div class="cr-rate-val bad">5.6%</div>
+          <div class="cr-rate-bench">ruim &lt;30% · médio 30–45%<br/>bom 45–60% · ótimo &gt;60%</div>
+        </div>
+        <div class="cr-rate">
+          <div class="cr-rate-lbl">Retenção 25%</div>
+          <div class="cr-rate-val otimo">51.1%</div>
+          <div class="cr-rate-bench">ruim &lt;20% · médio 20–35%<br/>bom 35–50% · ótimo &gt;50%</div>
+        </div>
+      </div>
+      <div class="cr-funnel">
+        <div class="cr-fstep"><div class="cr-fstep-lbl">Imp.</div><div class="cr-fstep-val" style="color:var(--orange)">833</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">Viz. 3s</div><div class="cr-fstep-val" style="color:#60a5fa">47</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">25%</div><div class="cr-fstep-val" style="color:#a78bfa">24</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">75%</div><div class="cr-fstep-val" style="color:#6ee7b7">11</div></div>
+      </div>
+    </div>
+
+    <div class="creative-card cv2">
+      <div class="cr-top">
+        <div>
+          <div class="cr-name">AD06 — Caminhão</div>
+          <div class="cr-sub">DFT_Visitas_F_V2 &nbsp;<span class="camp-pill pill-f2">V2</span></div>
+        </div>
+        <div style="font-size:1rem;font-weight:900;color:var(--orange)">R$ 9,00</div>
+      </div>
+      <div class="cr-stats">
+        <div class="cr-stat"><div class="cr-stat-lbl">Impressões</div><div class="cr-stat-val">2,608</div></div>
+        <div class="cr-stat"><div class="cr-stat-lbl">Alcance</div><div class="cr-stat-val">2,608</div></div>
+        <div class="cr-stat"><div class="cr-stat-lbl">Interações</div><div class="cr-stat-val">404</div></div>
+      </div>
+      <div class="cr-rates">
+        <div class="cr-rate">
+          <div class="cr-rate-lbl">Hook Rate</div>
+          <div class="cr-rate-val bad">14.2%</div>
+          <div class="cr-rate-bench">ruim &lt;30% · médio 30–45%<br/>bom 45–60% · ótimo &gt;60%</div>
+        </div>
+        <div class="cr-rate">
+          <div class="cr-rate-lbl">Retenção 25%</div>
+          <div class="cr-rate-val otimo">53.2%</div>
+          <div class="cr-rate-bench">ruim &lt;20% · médio 20–35%<br/>bom 35–50% · ótimo &gt;50%</div>
+        </div>
+      </div>
+      <div class="cr-funnel">
+        <div class="cr-fstep"><div class="cr-fstep-lbl">Imp.</div><div class="cr-fstep-val" style="color:var(--orange)">2,608</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">Viz. 3s</div><div class="cr-fstep-val" style="color:#60a5fa">370</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">25%</div><div class="cr-fstep-val" style="color:#a78bfa">197</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">75%</div><div class="cr-fstep-val" style="color:#6ee7b7">54</div></div>
+      </div>
+    </div>
+
+    <div class="creative-card cv2">
+      <div class="cr-top">
+        <div>
+          <div class="cr-name">AD07 — DFT</div>
+          <div class="cr-sub">DFT_Visitas_F_V2 &nbsp;<span class="camp-pill pill-f2">V2</span></div>
+        </div>
+        <div style="font-size:1rem;font-weight:900;color:var(--orange)">R$ 3,00</div>
+      </div>
+      <div class="cr-stats">
+        <div class="cr-stat"><div class="cr-stat-lbl">Impressões</div><div class="cr-stat-val">634</div></div>
+        <div class="cr-stat"><div class="cr-stat-lbl">Alcance</div><div class="cr-stat-val">628</div></div>
+        <div class="cr-stat"><div class="cr-stat-lbl">Interações</div><div class="cr-stat-val">60</div></div>
+      </div>
+      <div class="cr-rates">
+        <div class="cr-rate">
+          <div class="cr-rate-lbl">Hook Rate</div>
+          <div class="cr-rate-val bad">7.9%</div>
+          <div class="cr-rate-bench">ruim &lt;30% · médio 30–45%<br/>bom 45–60% · ótimo &gt;60%</div>
+        </div>
+        <div class="cr-rate">
+          <div class="cr-rate-lbl">Retenção 25%</div>
+          <div class="cr-rate-val bom">44.0%</div>
+          <div class="cr-rate-bench">ruim &lt;20% · médio 20–35%<br/>bom 35–50% · ótimo &gt;50%</div>
+        </div>
+      </div>
+      <div class="cr-funnel">
+        <div class="cr-fstep"><div class="cr-fstep-lbl">Imp.</div><div class="cr-fstep-val" style="color:var(--orange)">634</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">Viz. 3s</div><div class="cr-fstep-val" style="color:#60a5fa">50</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">25%</div><div class="cr-fstep-val" style="color:#a78bfa">22</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">75%</div><div class="cr-fstep-val" style="color:#6ee7b7">6</div></div>
+      </div>
+    </div>
+
+    <div class="creative-card cv2">
+      <div class="cr-top">
+        <div>
+          <div class="cr-name">AD08 — Log. Barata</div>
+          <div class="cr-sub">DFT_Visitas_F_V2 &nbsp;<span class="camp-pill pill-f2">V2</span></div>
+        </div>
+        <div style="font-size:1rem;font-weight:900;color:var(--orange)">R$ 0,00</div>
+      </div>
+      <div class="cr-stats">
+        <div class="cr-stat"><div class="cr-stat-lbl">Impressões</div><div class="cr-stat-val">95</div></div>
+        <div class="cr-stat"><div class="cr-stat-lbl">Alcance</div><div class="cr-stat-val">95</div></div>
+        <div class="cr-stat"><div class="cr-stat-lbl">Interações</div><div class="cr-stat-val">5</div></div>
+      </div>
+      <div class="cr-rates">
+        <div class="cr-rate">
+          <div class="cr-rate-lbl">Hook Rate</div>
+          <div class="cr-rate-val bad">5.3%</div>
+          <div class="cr-rate-bench">ruim &lt;30% · médio 30–45%<br/>bom 45–60% · ótimo &gt;60%</div>
+        </div>
+        <div class="cr-rate">
+          <div class="cr-rate-lbl">Retenção 25%</div>
+          <div class="cr-rate-val otimo">80.0%</div>
+          <div class="cr-rate-bench">ruim &lt;20% · médio 20–35%<br/>bom 35–50% · ótimo &gt;50%</div>
+        </div>
+      </div>
+      <div class="cr-funnel">
+        <div class="cr-fstep"><div class="cr-fstep-lbl">Imp.</div><div class="cr-fstep-val" style="color:var(--orange)">95</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">Viz. 3s</div><div class="cr-fstep-val" style="color:#60a5fa">5</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">25%</div><div class="cr-fstep-val" style="color:#a78bfa">4</div></div>
+        <div class="cr-farrow">›</div>
+        <div class="cr-fstep"><div class="cr-fstep-lbl">75%</div><div class="cr-fstep-val" style="color:#6ee7b7">1</div></div>
+      </div>
     </div>
   </div>
 
