@@ -264,82 +264,6 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
   .header-inner{ padding:20px 16px; }
 }
 
-
-.meta-camp-row {
-  display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:0;
-}
-.meta-camp-card {
-  background:var(--card); border:1px solid var(--border); border-radius:16px;
-  padding:22px; position:relative; overflow:hidden;
-  transition:transform .2s, box-shadow .2s;
-}
-.meta-camp-card:hover { transform:translateY(-3px); box-shadow:0 10px 32px rgba(0,0,0,0.4); }
-.meta-camp-card::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:3px;
-  border-radius:16px 16px 0 0;
-}
-.meta-camp-card.f::before  { background:linear-gradient(90deg,#1877f2,#42a5f5); }
-.meta-camp-card.f2::before { background:linear-gradient(90deg,#7928ca,#a855f7); }
-
-.meta-icon {
-  width:34px; height:34px; border-radius:9px;
-  display:flex; align-items:center; justify-content:center;
-  font-size:1rem; margin-bottom:12px;
-}
-.f  .meta-icon { background:rgba(24,119,242,0.2); }
-.f2 .meta-icon { background:rgba(168,85,247,0.2); }
-
-.meta-kpi-row {
-  display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;
-  padding-top:14px; border-top:1px solid var(--border);
-}
-.meta-kpi-lbl { font-size:0.62rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; text-transform:uppercase; }
-.meta-kpi-val { font-size:0.9rem; font-weight:800; margin-top:2px; }
-
-.video-funnel {
-  display:flex; align-items:center; gap:6px;
-  margin-top:14px; padding-top:14px; border-top:1px solid var(--border);
-  flex-wrap:wrap;
-}
-.vf-step {
-  display:flex; flex-direction:column; align-items:center;
-  background:rgba(255,255,255,0.04); border:1px solid var(--border);
-  border-radius:8px; padding:8px 12px; flex:1; min-width:60px;
-}
-.vf-lbl { font-size:0.6rem; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; text-align:center; }
-.vf-val { font-size:1rem; font-weight:900; }
-.vf-arrow { color:var(--muted2); font-size:1rem; }
-
-.creatives-wrap {
-  background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden;
-}
-.creatives-grid {
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-.cg-head {
-  display:contents;
-}
-.cg-cell {
-  padding:11px 14px; font-size:0.72rem; border-bottom:1px solid var(--border);
-}
-.cg-cell.header {
-  background:var(--card-alt); font-size:0.63rem; font-weight:800;
-  letter-spacing:0.8px; text-transform:uppercase; color:var(--muted);
-}
-.cg-cell.name { font-weight:800; color:var(--white); font-size:0.75rem; }
-.cg-cell.num  { color:rgba(255,255,255,0.8); text-align:right; }
-.cg-row-f  { background:rgba(24,119,242,0.04); }
-.cg-row-f2 { background:rgba(168,85,247,0.04); }
-.cg-row-f:hover, .cg-row-f2:hover { background:rgba(255,255,255,0.04); }
-.camp-pill {
-  display:inline-block; padding:2px 8px; border-radius:100px;
-  font-size:0.6rem; font-weight:800; margin-left:6px;
-}
-.pill-f  { background:rgba(24,119,242,0.2); color:#93c5fd; }
-.pill-f2 { background:rgba(168,85,247,0.2); color:#d8b4fe; }
-
-
 /* ── META SECTION ────────────────────────────────────────────────────── */
 .meta-kpi-strip {
   display:grid; grid-template-columns:repeat(7,1fr); gap:10px; margin-bottom:14px;
@@ -369,13 +293,50 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
 }
 .mkpi-bench b { color:rgba(255,255,255,0.55); }
 
+.creatives-grid-wrap {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
+}
+.creative-card {
+  background:var(--card); border:1px solid var(--border); border-radius:14px;
+  padding:20px; position:relative; overflow:hidden;
+  transition:transform .2s, box-shadow .2s;
+}
+.creative-card:hover { transform:translateY(-3px); box-shadow:0 8px 28px rgba(0,0,0,0.4); }
+.creative-card.cv1::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,#1877f2,#42a5f5); border-radius:14px 14px 0 0;
+}
+.creative-card.cv2::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,#7928ca,#a855f7); border-radius:14px 14px 0 0;
+}
+.cr-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px; }
+.cr-name { font-size:0.85rem; font-weight:800; line-height:1.3; }
+.cr-sub  { font-size:0.68rem; color:var(--muted); margin-top:3px; }
 
+.cr-rates { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px; }
+.cr-rate {
+  background:var(--card-alt); border:1px solid var(--border);
+  border-radius:10px; padding:10px 12px;
+}
+.cr-rate-lbl { font-size:0.6rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+.cr-rate-val { font-size:1.15rem; font-weight:900; }
+.cr-rate-val.bad    { color:#ef4444; }
+.cr-rate-val.medio  { color:#f59e0b; }
+.cr-rate-val.bom    { color:#6ee7b7; }
+.cr-rate-val.otimo  { color:#34d399; }
+.cr-rate-bench { font-size:0.55rem; color:var(--muted2); margin-top:3px; line-height:1.4; }
 
+.cr-funnel { display:flex; align-items:center; gap:4px; padding-top:12px; border-top:1px solid var(--border); }
+.cr-fstep { flex:1; text-align:center; }
+.cr-fstep-lbl { font-size:0.58rem; color:var(--muted); font-weight:700; text-transform:uppercase; margin-bottom:3px; }
+.cr-fstep-val { font-size:0.88rem; font-weight:900; }
+.cr-farrow { color:var(--muted2); font-size:0.85rem; flex-shrink:0; }
 
-
-
-
-
+.cr-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-bottom:12px; }
+.cr-stat { text-align:center; }
+.cr-stat-lbl { font-size:0.58rem; color:var(--muted); font-weight:700; text-transform:uppercase; }
+.cr-stat-val { font-size:0.82rem; font-weight:800; margin-top:1px; }
 
 /* camp summary cards */
 .meta-camp-sum { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px; }
@@ -393,45 +354,29 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
 .ms-m-val { font-size:0.88rem; font-weight:800; margin-top:2px; }
 
 
-/* ── CREATIVES TABLE ─────────────────────────────────────────────── */
-.cr-table-wrap {
-  background:var(--card); border:1px solid var(--border); border-radius:16px;
-  overflow:hidden;
-}
+/* ── CREATIVES TABLE ─────────────────────────────────────────── */
+.cr-table-wrap { background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden; }
 .cr-table { width:100%; border-collapse:collapse; font-size:0.8rem; }
 .cr-table thead tr { background:var(--card-alt); }
-.cr-table thead th {
-  padding:11px 14px; text-align:left;
-  font-size:0.62rem; font-weight:800; letter-spacing:1px;
-  text-transform:uppercase; color:var(--muted); white-space:nowrap;
-}
+.cr-table thead th { padding:11px 14px; text-align:left; font-size:0.62rem; font-weight:800; letter-spacing:1px; text-transform:uppercase; color:var(--muted); white-space:nowrap; }
 .cr-table tbody tr { border-bottom:1px solid var(--border); transition:background .12s; }
 .cr-table tbody tr:last-child { border-bottom:none; }
 .cr-table tbody tr:hover { background:rgba(255,255,255,0.03); }
 .cr-table tbody td { padding:11px 14px; color:rgba(255,255,255,0.85); white-space:nowrap; }
-.cr-table td.cr-name { font-weight:800; color:var(--white); max-width:220px; white-space:normal; }
+.cr-table td.cr-name { font-weight:800; color:var(--white); }
 .cr-table td.num { text-align:right; }
 .cr-table td.rate { text-align:right; font-weight:800; }
-.rate-bad    { color:#ef4444; }
-.rate-medio  { color:#f59e0b; }
-.rate-bom    { color:#6ee7b7; }
-.rate-otimo  { color:#34d399; }
+.rate-bad   { color:#ef4444; }
+.rate-medio { color:#f59e0b; }
+.rate-bom   { color:#6ee7b7; }
+.rate-otimo { color:#34d399; }
 .status-ativo { color:#34d399; font-weight:800; font-size:0.75rem; }
-.acao-pill {
-  display:inline-block; padding:4px 10px; border-radius:6px;
-  font-size:0.65rem; font-weight:800; letter-spacing:0.5px; white-space:nowrap;
-}
+.acao-pill { display:inline-block; padding:4px 10px; border-radius:6px; font-size:0.65rem; font-weight:800; letter-spacing:0.5px; white-space:nowrap; }
 .acao-escalar  { background:rgba(52,168,83,0.25);  color:#34d399; }
 .acao-ruim     { background:rgba(239,68,68,0.25);   color:#f87171; }
 .acao-aguardar { background:rgba(245,158,11,0.25);  color:#fbbf24; }
 .acao-basica   { background:rgba(255,255,255,0.08); color:var(--muted); }
-.anuncio-btn {
-  display:inline-flex; align-items:center; gap:4px;
-  background:rgba(255,255,255,0.06); border:1px solid var(--border);
-  color:var(--muted); padding:4px 10px; border-radius:6px;
-  font-size:0.68rem; font-weight:700; text-decoration:none;
-  transition:border-color .15s, color .15s;
-}
+.anuncio-btn { display:inline-flex; align-items:center; gap:4px; background:rgba(255,255,255,0.06); border:1px solid var(--border); color:var(--muted); padding:4px 10px; border-radius:6px; font-size:0.68rem; font-weight:700; text-decoration:none; transition:border-color .15s,color .15s; }
 .anuncio-btn:hover { border-color:var(--orange); color:var(--orange); }
 
 </style>
@@ -653,7 +598,6 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
   </div>
 
 
-
   <!-- META ADS SECTION -->
   <div class="sec-label" style="margin-top:36px;">Meta Ads — Brand Awareness · 27/04/2026</div>
 
@@ -719,236 +663,16 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
     </div>
   </div>
 
-          <div class="cr-sub">DFT_Visitas_F &nbsp;<span class="camp-pill pill-f">V1</span></div>
-        </div>
-        <div style="font-size:1rem;font-weight:900;color:var(--orange)">R$ 7,00</div>
-      </div>
-      <div class="cr-stats">
-        <div class="cr-stat"><div class="cr-stat-lbl">Impressões</div><div class="cr-stat-val">2,302</div></div>
-        <div class="cr-stat"><div class="cr-stat-lbl">Alcance</div><div class="cr-stat-val">2,222</div></div>
-        <div class="cr-stat"><div class="cr-stat-lbl">Interações</div><div class="cr-stat-val">138</div></div>
-      </div>
-      <div class="cr-rates">
-        <div class="cr-rate">
-          <div class="cr-rate-lbl">Hook Rate</div>
-          <div class="cr-rate-val bad">5.3%</div>
-          <div class="cr-rate-bench">ruim &lt;30% · médio 30–45%<br/>bom 45–60% · ótimo &gt;60%</div>
-        </div>
-        <div class="cr-rate">
-          <div class="cr-rate-lbl">Retenção 25%</div>
-          <div class="cr-rate-val bom">37.7%</div>
-          <div class="cr-rate-bench">ruim &lt;20% · médio 20–35%<br/>bom 35–50% · ótimo &gt;50%</div>
-        </div>
-      </div>
-      <div class="cr-funnel">
-        <div class="cr-fstep"><div class="cr-fstep-lbl">Imp.</div><div class="cr-fstep-val" style="color:var(--orange)">2,302</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">Viz. 3s</div><div class="cr-fstep-val" style="color:#60a5fa">122</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">25%</div><div class="cr-fstep-val" style="color:#a78bfa">46</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">75%</div><div class="cr-fstep-val" style="color:#6ee7b7">22</div></div>
-      </div>
-    </div>
-
-    <div class="creative-card cv1">
-      <div class="cr-top">
-        <div>
-          <div class="cr-name">AD02 — Por Trás</div>
-          <div class="cr-sub">DFT_Visitas_F &nbsp;<span class="camp-pill pill-f">V1</span></div>
-        </div>
-        <div style="font-size:1rem;font-weight:900;color:var(--orange)">R$ 1,00</div>
-      </div>
-      <div class="cr-stats">
-        <div class="cr-stat"><div class="cr-stat-lbl">Impressões</div><div class="cr-stat-val">224</div></div>
-        <div class="cr-stat"><div class="cr-stat-lbl">Alcance</div><div class="cr-stat-val">223</div></div>
-        <div class="cr-stat"><div class="cr-stat-lbl">Interações</div><div class="cr-stat-val">23</div></div>
-      </div>
-      <div class="cr-rates">
-        <div class="cr-rate">
-          <div class="cr-rate-lbl">Hook Rate</div>
-          <div class="cr-rate-val bad">9.4%</div>
-          <div class="cr-rate-bench">ruim &lt;30% · médio 30–45%<br/>bom 45–60% · ótimo &gt;60%</div>
-        </div>
-        <div class="cr-rate">
-          <div class="cr-rate-lbl">Retenção 25%</div>
-          <div class="cr-rate-val otimo">61.9%</div>
-          <div class="cr-rate-bench">ruim &lt;20% · médio 20–35%<br/>bom 35–50% · ótimo &gt;50%</div>
-        </div>
-      </div>
-      <div class="cr-funnel">
-        <div class="cr-fstep"><div class="cr-fstep-lbl">Imp.</div><div class="cr-fstep-val" style="color:var(--orange)">224</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">Viz. 3s</div><div class="cr-fstep-val" style="color:#60a5fa">21</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">25%</div><div class="cr-fstep-val" style="color:#a78bfa">13</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">75%</div><div class="cr-fstep-val" style="color:#6ee7b7">3</div></div>
-      </div>
-    </div>
-
-    <div class="creative-card cv1">
-      <div class="cr-top">
-        <div>
-          <div class="cr-name">AD03 — E Se Sua Carga</div>
-          <div class="cr-sub">DFT_Visitas_F &nbsp;<span class="camp-pill pill-f">V1</span></div>
-        </div>
-        <div style="font-size:1rem;font-weight:900;color:var(--orange)">R$ 3,00</div>
-      </div>
-      <div class="cr-stats">
-        <div class="cr-stat"><div class="cr-stat-lbl">Impressões</div><div class="cr-stat-val">833</div></div>
-        <div class="cr-stat"><div class="cr-stat-lbl">Alcance</div><div class="cr-stat-val">826</div></div>
-        <div class="cr-stat"><div class="cr-stat-lbl">Interações</div><div class="cr-stat-val">50</div></div>
-      </div>
-      <div class="cr-rates">
-        <div class="cr-rate">
-          <div class="cr-rate-lbl">Hook Rate</div>
-          <div class="cr-rate-val bad">5.6%</div>
-          <div class="cr-rate-bench">ruim &lt;30% · médio 30–45%<br/>bom 45–60% · ótimo &gt;60%</div>
-        </div>
-        <div class="cr-rate">
-          <div class="cr-rate-lbl">Retenção 25%</div>
-          <div class="cr-rate-val otimo">51.1%</div>
-          <div class="cr-rate-bench">ruim &lt;20% · médio 20–35%<br/>bom 35–50% · ótimo &gt;50%</div>
-        </div>
-      </div>
-      <div class="cr-funnel">
-        <div class="cr-fstep"><div class="cr-fstep-lbl">Imp.</div><div class="cr-fstep-val" style="color:var(--orange)">833</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">Viz. 3s</div><div class="cr-fstep-val" style="color:#60a5fa">47</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">25%</div><div class="cr-fstep-val" style="color:#a78bfa">24</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">75%</div><div class="cr-fstep-val" style="color:#6ee7b7">11</div></div>
-      </div>
-    </div>
-
-    <div class="creative-card cv2">
-      <div class="cr-top">
-        <div>
-          <div class="cr-name">AD06 — Caminhão</div>
-          <div class="cr-sub">DFT_Visitas_F_V2 &nbsp;<span class="camp-pill pill-f2">V2</span></div>
-        </div>
-        <div style="font-size:1rem;font-weight:900;color:var(--orange)">R$ 9,00</div>
-      </div>
-      <div class="cr-stats">
-        <div class="cr-stat"><div class="cr-stat-lbl">Impressões</div><div class="cr-stat-val">2,608</div></div>
-        <div class="cr-stat"><div class="cr-stat-lbl">Alcance</div><div class="cr-stat-val">2,608</div></div>
-        <div class="cr-stat"><div class="cr-stat-lbl">Interações</div><div class="cr-stat-val">404</div></div>
-      </div>
-      <div class="cr-rates">
-        <div class="cr-rate">
-          <div class="cr-rate-lbl">Hook Rate</div>
-          <div class="cr-rate-val bad">14.2%</div>
-          <div class="cr-rate-bench">ruim &lt;30% · médio 30–45%<br/>bom 45–60% · ótimo &gt;60%</div>
-        </div>
-        <div class="cr-rate">
-          <div class="cr-rate-lbl">Retenção 25%</div>
-          <div class="cr-rate-val otimo">53.2%</div>
-          <div class="cr-rate-bench">ruim &lt;20% · médio 20–35%<br/>bom 35–50% · ótimo &gt;50%</div>
-        </div>
-      </div>
-      <div class="cr-funnel">
-        <div class="cr-fstep"><div class="cr-fstep-lbl">Imp.</div><div class="cr-fstep-val" style="color:var(--orange)">2,608</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">Viz. 3s</div><div class="cr-fstep-val" style="color:#60a5fa">370</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">25%</div><div class="cr-fstep-val" style="color:#a78bfa">197</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">75%</div><div class="cr-fstep-val" style="color:#6ee7b7">54</div></div>
-      </div>
-    </div>
-
-    <div class="creative-card cv2">
-      <div class="cr-top">
-        <div>
-          <div class="cr-name">AD07 — DFT</div>
-          <div class="cr-sub">DFT_Visitas_F_V2 &nbsp;<span class="camp-pill pill-f2">V2</span></div>
-        </div>
-        <div style="font-size:1rem;font-weight:900;color:var(--orange)">R$ 3,00</div>
-      </div>
-      <div class="cr-stats">
-        <div class="cr-stat"><div class="cr-stat-lbl">Impressões</div><div class="cr-stat-val">634</div></div>
-        <div class="cr-stat"><div class="cr-stat-lbl">Alcance</div><div class="cr-stat-val">628</div></div>
-        <div class="cr-stat"><div class="cr-stat-lbl">Interações</div><div class="cr-stat-val">60</div></div>
-      </div>
-      <div class="cr-rates">
-        <div class="cr-rate">
-          <div class="cr-rate-lbl">Hook Rate</div>
-          <div class="cr-rate-val bad">7.9%</div>
-          <div class="cr-rate-bench">ruim &lt;30% · médio 30–45%<br/>bom 45–60% · ótimo &gt;60%</div>
-        </div>
-        <div class="cr-rate">
-          <div class="cr-rate-lbl">Retenção 25%</div>
-          <div class="cr-rate-val bom">44.0%</div>
-          <div class="cr-rate-bench">ruim &lt;20% · médio 20–35%<br/>bom 35–50% · ótimo &gt;50%</div>
-        </div>
-      </div>
-      <div class="cr-funnel">
-        <div class="cr-fstep"><div class="cr-fstep-lbl">Imp.</div><div class="cr-fstep-val" style="color:var(--orange)">634</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">Viz. 3s</div><div class="cr-fstep-val" style="color:#60a5fa">50</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">25%</div><div class="cr-fstep-val" style="color:#a78bfa">22</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">75%</div><div class="cr-fstep-val" style="color:#6ee7b7">6</div></div>
-      </div>
-    </div>
-
-    <div class="creative-card cv2">
-      <div class="cr-top">
-        <div>
-          <div class="cr-name">AD08 — Log. Barata</div>
-          <div class="cr-sub">DFT_Visitas_F_V2 &nbsp;<span class="camp-pill pill-f2">V2</span></div>
-        </div>
-        <div style="font-size:1rem;font-weight:900;color:var(--orange)">R$ 0,00</div>
-      </div>
-      <div class="cr-stats">
-        <div class="cr-stat"><div class="cr-stat-lbl">Impressões</div><div class="cr-stat-val">95</div></div>
-        <div class="cr-stat"><div class="cr-stat-lbl">Alcance</div><div class="cr-stat-val">95</div></div>
-        <div class="cr-stat"><div class="cr-stat-lbl">Interações</div><div class="cr-stat-val">5</div></div>
-      </div>
-      <div class="cr-rates">
-        <div class="cr-rate">
-          <div class="cr-rate-lbl">Hook Rate</div>
-          <div class="cr-rate-val bad">5.3%</div>
-          <div class="cr-rate-bench">ruim &lt;30% · médio 30–45%<br/>bom 45–60% · ótimo &gt;60%</div>
-        </div>
-        <div class="cr-rate">
-          <div class="cr-rate-lbl">Retenção 25%</div>
-          <div class="cr-rate-val otimo">80.0%</div>
-          <div class="cr-rate-bench">ruim &lt;20% · médio 20–35%<br/>bom 35–50% · ótimo &gt;50%</div>
-        </div>
-      </div>
-      <div class="cr-funnel">
-        <div class="cr-fstep"><div class="cr-fstep-lbl">Imp.</div><div class="cr-fstep-val" style="color:var(--orange)">95</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">Viz. 3s</div><div class="cr-fstep-val" style="color:#60a5fa">5</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">25%</div><div class="cr-fstep-val" style="color:#a78bfa">4</div></div>
-        <div class="cr-farrow">›</div>
-        <div class="cr-fstep"><div class="cr-fstep-lbl">75%</div><div class="cr-fstep-val" style="color:#6ee7b7">1</div></div>
-      </div>
-    </div>
-  </div>
-
 
   <!-- Creative table -->
   <div class="cr-table-wrap">
     <table class="cr-table">
       <thead>
         <tr>
-          <th>Criativo</th>
-          <th>Status</th>
-          <th>Investido</th>
-          <th>Alcance</th>
-          <th>Vis. 3s</th>
-          <th>Cliques</th>
-          <th>CPM</th>
-          <th>Hooke</th>
-          <th>Retenção</th>
-          <th>Ação</th>
-          <th></th>
+          <th>Criativo</th><th>Status</th><th>Investido</th>
+          <th>Alcance</th><th>Vis. 3s</th><th>Cliques</th>
+          <th>CPM</th><th>Hooke</th><th>Retenção</th>
+          <th>Ação</th><th></th>
         </tr>
       </thead>
       <tbody>
@@ -963,7 +687,7 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
         <td class="rate rate-bad">5.3%</td>
         <td class="rate rate-bom">37.7%</td>
         <td><span class="acao-pill acao-aguardar">AGUARDAR DADOS</span></td>
-        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpetKhgFK3/" target="_blank">↗ Anúncio</a></td>
+        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpetKhgFK3/" target="_blank">&#8599; Anúncio</a></td>
       </tr>
       <tr>
         <td class="cr-name">AD02_VID_Por_Tras <span class="camp-pill pill-f">V1</span></td>
@@ -976,7 +700,7 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
         <td class="rate rate-bad">9.4%</td>
         <td class="rate rate-otimo">61.9%</td>
         <td><span class="acao-pill acao-basica">AMOSTRA BÁSICA</span></td>
-        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpe457gEaS/" target="_blank">↗ Anúncio</a></td>
+        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpe457gEaS/" target="_blank">&#8599; Anúncio</a></td>
       </tr>
       <tr>
         <td class="cr-name">AD03_VID_E_Se_Sua_Carga <span class="camp-pill pill-f">V1</span></td>
@@ -989,7 +713,7 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
         <td class="rate rate-bad">5.6%</td>
         <td class="rate rate-otimo">51.1%</td>
         <td><span class="acao-pill acao-basica">AMOSTRA BÁSICA</span></td>
-        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpfClqgGax/" target="_blank">↗ Anúncio</a></td>
+        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpfClqgGax/" target="_blank">&#8599; Anúncio</a></td>
       </tr>
       <tr>
         <td class="cr-name">AD06_VID_Caminhao <span class="camp-pill pill-f2">V2</span></td>
@@ -1002,7 +726,7 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
         <td class="rate rate-bad">14.2%</td>
         <td class="rate rate-otimo">53.2%</td>
         <td><span class="acao-pill acao-aguardar">AGUARDAR DADOS</span></td>
-        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpfkx8AHdk/" target="_blank">↗ Anúncio</a></td>
+        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpfkx8AHdk/" target="_blank">&#8599; Anúncio</a></td>
       </tr>
       <tr>
         <td class="cr-name">AD07_VID_DFT <span class="camp-pill pill-f2">V2</span></td>
@@ -1015,7 +739,7 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
         <td class="rate rate-bad">7.9%</td>
         <td class="rate rate-bom">44.0%</td>
         <td><span class="acao-pill acao-basica">AMOSTRA BÁSICA</span></td>
-        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpfjz5AL8r/" target="_blank">↗ Anúncio</a></td>
+        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpfjz5AL8r/" target="_blank">&#8599; Anúncio</a></td>
       </tr>
       <tr>
         <td class="cr-name">AD08_VID_Log_Barata <span class="camp-pill pill-f2">V2</span></td>
@@ -1028,212 +752,8 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
         <td class="rate rate-bad">5.3%</td>
         <td class="rate rate-otimo">80.0%</td>
         <td><span class="acao-pill acao-basica">AMOSTRA BÁSICA</span></td>
-        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpfhvOAOcp/" target="_blank">↗ Anúncio</a></td>
+        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpfhvOAOcp/" target="_blank">&#8599; Anúncio</a></td>
       </tr>
       </tbody>
     </table>
   </div>
-
-</main>
-
-<div class="g-line"></div>
-
-<script>
-// ── DATA ────────────────────────────────────────────────────────────────
-const RAW = [
-  {date:'2026-04-22',camp:'Branding',   invest:15.34, imp:30,   clk:4,  leads:0},
-  {date:'2026-04-23',camp:'Demanda Ativa',invest:57.72,imp:48, clk:6,  leads:0},
-  {date:'2026-04-23',camp:'Branding',   invest:13.64, imp:5,    clk:2,  leads:1},
-  {date:'2026-04-24',camp:'Demanda Ativa',invest:40.74,imp:94, clk:7,  leads:1},
-  {date:'2026-04-24',camp:'Branding',   invest:15.00, imp:12,   clk:2,  leads:1},
-  {date:'2026-04-24',camp:'Segmentos',  invest:76.58, imp:1205, clk:45, leads:4},
-  {date:'2026-04-25',camp:'Branding',   invest:14.22, imp:66,   clk:10, leads:1},
-  {date:'2026-04-26',camp:'Branding',   invest:18.45, imp:63,   clk:6,  leads:2},
-  {date:'2026-04-27',camp:'Demanda Ativa',invest:34.18,imp:93, clk:6,  leads:1},
-  {date:'2026-04-27',camp:'Branding',   invest:9.71,  imp:40,   clk:7,  leads:2},
-  {date:'2026-04-27',camp:'Segmentos',  invest:56.86, imp:455,  clk:17, leads:0},
-];
-
-// ── FORMATTERS ──────────────────────────────────────────────────────────
-const BRL = v => v==null||isNaN(v) ? '—' : 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
-const NUM = v => v==null ? '—' : v.toLocaleString('pt-BR');
-const PCT = v => v==null||isNaN(v) ? '—' : v.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';
-const S = (id,html) => { const el=document.getElementById(id); if(el) el.innerHTML=html; };
-
-// ── FILTER ──────────────────────────────────────────────────────────────
-let activePreset = 'all';
-const TODAY = '2026-04-27';
-
-function filterData(preset) {
-  if (preset==='all') return RAW;
-  const t = new Date(TODAY);
-  const cutoff = new Date(t);
-  cutoff.setDate(t.getDate() - (preset-1));
-  const cs = cutoff.toISOString().slice(0,10);
-  return RAW.filter(r => r.date >= cs);
-}
-
-function setPreset(p, btn) {
-  activePreset = p;
-  document.querySelectorAll('.preset-tab').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  render(filterData(p));
-}
-
-// ── AGGREGATE ──────────────────────────────────────────────────────────
-function agg(data) {
-  const total = {invest:0,imp:0,clk:0,leads:0};
-  const bycamp = {'Branding':{invest:0,imp:0,clk:0,leads:0},'Demanda Ativa':{invest:0,imp:0,clk:0,leads:0},'Segmentos':{invest:0,imp:0,clk:0,leads:0}};
-  data.forEach(r => {
-    total.invest += r.invest; total.imp += r.imp; total.clk += r.clk; total.leads += r.leads;
-    if (bycamp[r.camp]) {
-      bycamp[r.camp].invest += r.invest; bycamp[r.camp].imp += r.imp;
-      bycamp[r.camp].clk   += r.clk;    bycamp[r.camp].leads += r.leads;
-    }
-  });
-  return {total, bycamp};
-}
-
-// ── CHARTS ─────────────────────────────────────────────────────────────
-let chartDaily=null, chartLeads=null;
-
-function buildCharts(data) {
-  // Daily chart
-  const days = [...new Set(data.map(r=>r.date))].sort();
-  const dailyInvest = days.map(d => data.filter(r=>r.date===d).reduce((s,r)=>s+r.invest,0));
-  const dailyClk    = days.map(d => data.filter(r=>r.date===d).reduce((s,r)=>s+r.clk,0));
-  const dailyLeads  = days.map(d => data.filter(r=>r.date===d).reduce((s,r)=>s+r.leads,0));
-  const labels = days.map(d => d.slice(5).split('-').reverse().join('/'));
-
-  if (chartDaily) chartDaily.destroy();
-  chartDaily = new Chart(document.getElementById('chartDaily'), {
-    type:'bar',
-    data:{
-      labels,
-      datasets:[
-        {label:'Investimento (R$)',data:dailyInvest,backgroundColor:'rgba(240,120,32,0.7)',borderRadius:6,yAxisID:'y1'},
-        {label:'Cliques',data:dailyClk,type:'line',borderColor:'#4285f4',backgroundColor:'rgba(66,133,244,0.1)',tension:.3,pointRadius:4,pointBackgroundColor:'#4285f4',yAxisID:'y2'},
-        {label:'Leads',data:dailyLeads,type:'line',borderColor:'#34a853',backgroundColor:'rgba(52,168,83,0.1)',tension:.3,pointRadius:4,pointBackgroundColor:'#34a853',yAxisID:'y2'},
-      ]
-    },
-    options:{
-      responsive:true, maintainAspectRatio:true,
-      plugins:{legend:{labels:{color:'rgba(255,255,255,0.7)',font:{family:'Nunito',size:11}}},tooltip:{backgroundColor:'#0f1050',borderColor:'rgba(255,255,255,0.1)',borderWidth:1}},
-      scales:{
-        x:{ticks:{color:'rgba(255,255,255,0.5)',font:{family:'Nunito'}},grid:{color:'rgba(255,255,255,0.05)'}},
-        y1:{position:'left',ticks:{color:'rgba(255,255,255,0.5)',font:{family:'Nunito'},callback:v=>'R$'+v.toLocaleString('pt-BR')},grid:{color:'rgba(255,255,255,0.05)'}},
-        y2:{position:'right',ticks:{color:'rgba(255,255,255,0.5)',font:{family:'Nunito'}},grid:{display:false}},
-      }
-    }
-  });
-
-  // Leads by campaign
-  const camps = ['Branding','Demanda Ativa','Segmentos'];
-  const leadsByCamp = camps.map(c => data.filter(r=>r.camp===c).reduce((s,r)=>s+r.leads,0));
-  if (chartLeads) chartLeads.destroy();
-  chartLeads = new Chart(document.getElementById('chartLeads'), {
-    type:'doughnut',
-    data:{
-      labels:camps,
-      datasets:[{
-        data:leadsByCamp,
-        backgroundColor:['rgba(24,119,242,0.8)','rgba(26,115,232,0.8)','rgba(52,168,83,0.8)'],
-        borderWidth:2, borderColor:'#0f1050', hoverOffset:6
-      }]
-    },
-    options:{
-      responsive:true, maintainAspectRatio:true,
-      plugins:{
-        legend:{position:'bottom',labels:{color:'rgba(255,255,255,0.7)',font:{family:'Nunito',size:11},padding:12}},
-        tooltip:{backgroundColor:'#0f1050',borderColor:'rgba(255,255,255,0.1)',borderWidth:1}
-      }
-    }
-  });
-}
-
-// ── TABLE ───────────────────────────────────────────────────────────────
-function buildTable(data) {
-  const sorted = [...data].sort((a,b)=>b.date.localeCompare(a.date));
-  const tbody = document.getElementById('tableBody');
-  tbody.innerHTML = sorted.map(r => {
-    const cpc = r.clk>0 ? r.invest/r.clk : null;
-    const cpl = r.leads>0 ? r.invest/r.leads : null;
-    const cls = r.camp==='Branding'?'badge-brand':r.camp==='Demanda Ativa'?'badge-demand':'badge-seg';
-    const dateStr = r.date.slice(8)+'/'+r.date.slice(5,7);
-    return `<tr>
-      <td>${dateStr}</td>
-      <td><span class="badge-camp ${cls}">${r.camp}</span></td>
-      <td>${BRL(r.invest)}</td>
-      <td>${NUM(r.imp)}</td>
-      <td>${NUM(r.clk)}</td>
-      <td style="color:#6ee7b7;font-weight:800">${r.leads}</td>
-      <td>${BRL(cpc)}</td>
-      <td>${BRL(cpl)}</td>
-    </tr>`;
-  }).join('');
-}
-
-// ── RENDER ──────────────────────────────────────────────────────────────
-function render(data) {
-  const {total,bycamp} = agg(data);
-  const days = new Set(data.map(r=>r.date)).size;
-
-  // KPI strip
-  S('kInvest', BRL(total.invest));
-  S('kInvestSub', days+' dias · '+BRL(total.invest/days)+'/dia');
-  S('kImp', NUM(total.imp));
-  S('kImpSub', NUM(Math.round(total.imp/days))+'/dia');
-  S('kClk', NUM(total.clk));
-  S('kClkSub', NUM(Math.round(total.clk/days))+'/dia');
-  S('kLeads', total.leads);
-  S('kLeadsSub', total.leads>0 ? (total.leads/days).toFixed(1)+'/dia' : '0/dia');
-  const cpc = total.clk>0 ? total.invest/total.clk : null;
-  const cpl = total.leads>0 ? total.invest/total.leads : null;
-  S('kCpc', BRL(cpc));
-  S('kCpl', BRL(cpl));
-
-  // Campaign cards
-  const camps = [
-    ['Brand','cBrand',bycamp['Branding']],
-    ['Dem','cDem',bycamp['Demanda Ativa']],
-    ['Seg','cSeg',bycamp['Segmentos']],
-  ];
-  camps.forEach(([,pfx,c]) => {
-    S(pfx+'Invest', BRL(c.invest));
-    S(pfx+'Day', BRL(c.invest/days)+'/dia');
-    S(pfx+'Clk', NUM(c.clk));
-    S(pfx+'Leads', c.leads);
-    S(pfx+'Imp', NUM(c.imp));
-    S(pfx+'Cpl', c.leads>0 ? BRL(c.invest/c.leads) : '—');
-    const bar = document.getElementById(pfx+'Bar');
-    if(bar) bar.style.width = (total.invest>0 ? (c.invest/total.invest*100).toFixed(1) : 0)+'%';
-  });
-  S('cTotInvest', BRL(total.invest));
-  S('cTotDay', BRL(total.invest/days)+'/dia');
-  S('cTotClk', NUM(total.clk));
-  S('cTotLeads', total.leads);
-  S('cTotImp', NUM(total.imp));
-  S('cTotCpl', BRL(cpl));
-
-  // Funnel
-  const ctr = total.imp>0 ? total.clk/total.imp*100 : null;
-  const conv = total.clk>0 ? total.leads/total.clk*100 : null;
-  S('fImp', NUM(total.imp));
-  S('fClk', NUM(total.clk));
-  S('fLeads', total.leads);
-  S('fCtr', PCT(ctr));
-  S('fTxConv', PCT(conv));
-  S('frCtr', PCT(ctr));
-  S('frConv', PCT(conv));
-  S('frCpc', BRL(cpc));
-  S('frCpl', BRL(cpl));
-
-  buildCharts(data);
-  buildTable(data);
-}
-
-// ── INIT ────────────────────────────────────────────────────────────────
-render(RAW);
-</script>
-</body>
-</html>
