@@ -263,6 +263,82 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
   main{ padding:24px 16px 60px; }
   .header-inner{ padding:20px 16px; }
 }
+
+/* ── META SECTION ─────────────────────────────────────────── */
+.meta-camp-row {
+  display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:0;
+}
+.meta-camp-card {
+  background:var(--card); border:1px solid var(--border); border-radius:16px;
+  padding:22px; position:relative; overflow:hidden;
+  transition:transform .2s, box-shadow .2s;
+}
+.meta-camp-card:hover { transform:translateY(-3px); box-shadow:0 10px 32px rgba(0,0,0,0.4); }
+.meta-camp-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  border-radius:16px 16px 0 0;
+}
+.meta-camp-card.f::before  { background:linear-gradient(90deg,#1877f2,#42a5f5); }
+.meta-camp-card.f2::before { background:linear-gradient(90deg,#7928ca,#a855f7); }
+
+.meta-icon {
+  width:34px; height:34px; border-radius:9px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1rem; margin-bottom:12px;
+}
+.f  .meta-icon { background:rgba(24,119,242,0.2); }
+.f2 .meta-icon { background:rgba(168,85,247,0.2); }
+
+.meta-kpi-row {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;
+  padding-top:14px; border-top:1px solid var(--border);
+}
+.meta-kpi-lbl { font-size:0.62rem; color:var(--muted); font-weight:700; letter-spacing:0.5px; text-transform:uppercase; }
+.meta-kpi-val { font-size:0.9rem; font-weight:800; margin-top:2px; }
+
+.video-funnel {
+  display:flex; align-items:center; gap:6px;
+  margin-top:14px; padding-top:14px; border-top:1px solid var(--border);
+  flex-wrap:wrap;
+}
+.vf-step {
+  display:flex; flex-direction:column; align-items:center;
+  background:rgba(255,255,255,0.04); border:1px solid var(--border);
+  border-radius:8px; padding:8px 12px; flex:1; min-width:60px;
+}
+.vf-lbl { font-size:0.6rem; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; text-align:center; }
+.vf-val { font-size:1rem; font-weight:900; }
+.vf-arrow { color:var(--muted2); font-size:1rem; }
+
+.creatives-wrap {
+  background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden;
+}
+.creatives-grid {
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.cg-head {
+  display:contents;
+}
+.cg-cell {
+  padding:11px 14px; font-size:0.72rem; border-bottom:1px solid var(--border);
+}
+.cg-cell.header {
+  background:var(--card-alt); font-size:0.63rem; font-weight:800;
+  letter-spacing:0.8px; text-transform:uppercase; color:var(--muted);
+}
+.cg-cell.name { font-weight:800; color:var(--white); font-size:0.75rem; }
+.cg-cell.num  { color:rgba(255,255,255,0.8); text-align:right; }
+.cg-row-f  { background:rgba(24,119,242,0.04); }
+.cg-row-f2 { background:rgba(168,85,247,0.04); }
+.cg-row-f:hover, .cg-row-f2:hover { background:rgba(255,255,255,0.04); }
+.camp-pill {
+  display:inline-block; padding:2px 8px; border-radius:100px;
+  font-size:0.6rem; font-weight:800; margin-left:6px;
+}
+.pill-f  { background:rgba(24,119,242,0.2); color:#93c5fd; }
+.pill-f2 { background:rgba(168,85,247,0.2); color:#d8b4fe; }
+
 </style>
 </head>
 <body>
@@ -479,6 +555,157 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
       </thead>
       <tbody id="tableBody"></tbody>
     </table>
+  </div>
+
+
+  <!-- META ADS SECTION -->
+  <div class="sec-label" style="margin-top:36px;">Meta Ads — Brand Awareness</div>
+
+  <!-- KPI strip Meta -->
+  <div class="kpi-strip" style="margin-bottom:14px;">
+    <div class="kpi-card" style="--c:#1877f2;">
+      <div class="kpi-label">Investido</div>
+      <div class="kpi-value orange">R$ 23,00</div>
+      <div class="kpi-sub">27/04/2026 · 1 dia</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Impressões</div>
+      <div class="kpi-value">6.696</div>
+      <div class="kpi-sub">alcance: 6.602</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Visualizações</div>
+      <div class="kpi-value">136</div>
+      <div class="kpi-sub">CTR: 2,03%</div>
+    </div>
+    <div class="kpi-card leads">
+      <div class="kpi-label">Visualiz. 3s+</div>
+      <div class="kpi-value">615</div>
+      <div class="kpi-sub">taxa: 9,18%</div>
+    </div>
+    <div class="kpi-card cpc">
+      <div class="kpi-label">Interações</div>
+      <div class="kpi-value">680</div>
+      <div class="kpi-sub">curtidas, saves, shares</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">25% assistido</div>
+      <div class="kpi-value">306</div>
+      <div class="kpi-sub">75%: 97 views</div>
+    </div>
+  </div>
+
+  <!-- Campaign cards Meta -->
+  <div class="meta-camp-row" style="margin-bottom:14px;">
+    <div class="meta-camp-card f">
+      <div class="meta-icon">📘</div>
+      <div class="camp-plat">Meta Ads · Instagram</div>
+      <div class="camp-name">DFT_Visitas_F <span class="camp-pill pill-f">V1</span></div>
+      <div style="font-size:0.75rem;color:var(--muted);margin-bottom:4px;">3 criativos · Público Aberto</div>
+      <div class="camp-val">R$ 11,00</div>
+      <div class="meta-kpi-row">
+        <div><div class="meta-kpi-lbl">Impressões</div><div class="meta-kpi-val">3.359</div></div>
+        <div><div class="meta-kpi-lbl">Vizual. 3s</div><div class="meta-kpi-val">190</div></div>
+        <div><div class="meta-kpi-lbl">25% assist.</div><div class="meta-kpi-val">83</div></div>
+        <div><div class="meta-kpi-lbl">75% assist.</div><div class="meta-kpi-val">36</div></div>
+      </div>
+      <div class="video-funnel">
+        <div class="vf-step"><div class="vf-lbl">Imp.</div><div class="vf-val" style="color:var(--orange)">3.359</div></div>
+        <div class="vf-arrow">›</div>
+        <div class="vf-step"><div class="vf-lbl">3s+</div><div class="vf-val" style="color:#60a5fa">190</div></div>
+        <div class="vf-arrow">›</div>
+        <div class="vf-step"><div class="vf-lbl">25%</div><div class="vf-val" style="color:#a78bfa">83</div></div>
+        <div class="vf-arrow">›</div>
+        <div class="vf-step"><div class="vf-lbl">75%</div><div class="vf-val" style="color:#6ee7b7">36</div></div>
+      </div>
+    </div>
+    <div class="meta-camp-card f2">
+      <div class="meta-icon">📗</div>
+      <div class="camp-plat">Meta Ads · Instagram</div>
+      <div class="camp-name">DFT_Visitas_F_V2 <span class="camp-pill pill-f2">V2</span></div>
+      <div style="font-size:0.75rem;color:var(--muted);margin-bottom:4px;">3 criativos · Público Aberto</div>
+      <div class="camp-val">R$ 12,00</div>
+      <div class="meta-kpi-row">
+        <div><div class="meta-kpi-lbl">Impressões</div><div class="meta-kpi-val">3.337</div></div>
+        <div><div class="meta-kpi-lbl">Vizual. 3s</div><div class="meta-kpi-val">425</div></div>
+        <div><div class="meta-kpi-lbl">25% assist.</div><div class="meta-kpi-val">223</div></div>
+        <div><div class="meta-kpi-lbl">75% assist.</div><div class="meta-kpi-val">61</div></div>
+      </div>
+      <div class="video-funnel">
+        <div class="vf-step"><div class="vf-lbl">Imp.</div><div class="vf-val" style="color:var(--orange)">3.337</div></div>
+        <div class="vf-arrow">›</div>
+        <div class="vf-step"><div class="vf-lbl">3s+</div><div class="vf-val" style="color:#60a5fa">425</div></div>
+        <div class="vf-arrow">›</div>
+        <div class="vf-step"><div class="vf-lbl">25%</div><div class="vf-val" style="color:#a78bfa">223</div></div>
+        <div class="vf-arrow">›</div>
+        <div class="vf-step"><div class="vf-lbl">75%</div><div class="vf-val" style="color:#6ee7b7">61</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Creatives table -->
+  <div class="creatives-wrap">
+    <div class="creatives-grid">
+      <!-- Header -->
+      <div class="cg-cell header">Criativo</div>
+      <div class="cg-cell header" style="text-align:right">Invest.</div>
+      <div class="cg-cell header" style="text-align:right">Impressões</div>
+      <div class="cg-cell header" style="text-align:right">Vizualizações</div>
+      <div class="cg-cell header" style="text-align:right">Alcance</div>
+      <div class="cg-cell header" style="text-align:right">Viz. 3s</div>
+      <div class="cg-cell header" style="text-align:right">25%</div>
+      <div class="cg-cell header" style="text-align:right">75%</div>
+      <!-- F rows -->
+      <div class="cg-cell name cg-row-f">AD01 — Deixa Eu Te Falar <span class="camp-pill pill-f">V1</span></div>
+      <div class="cg-cell num cg-row-f">R$ 7</div>
+      <div class="cg-cell num cg-row-f">2.302</div>
+      <div class="cg-cell num cg-row-f">44</div>
+      <div class="cg-cell num cg-row-f">2.222</div>
+      <div class="cg-cell num cg-row-f">122</div>
+      <div class="cg-cell num cg-row-f">46</div>
+      <div class="cg-cell num cg-row-f">22</div>
+      <div class="cg-cell name cg-row-f">AD02 — Por Trás <span class="camp-pill pill-f">V1</span></div>
+      <div class="cg-cell num cg-row-f">R$ 1</div>
+      <div class="cg-cell num cg-row-f">224</div>
+      <div class="cg-cell num cg-row-f">9</div>
+      <div class="cg-cell num cg-row-f">223</div>
+      <div class="cg-cell num cg-row-f">21</div>
+      <div class="cg-cell num cg-row-f">13</div>
+      <div class="cg-cell num cg-row-f">3</div>
+      <div class="cg-cell name cg-row-f">AD03 — E Se Sua Carga <span class="camp-pill pill-f">V1</span></div>
+      <div class="cg-cell num cg-row-f">R$ 3</div>
+      <div class="cg-cell num cg-row-f">833</div>
+      <div class="cg-cell num cg-row-f">11</div>
+      <div class="cg-cell num cg-row-f">826</div>
+      <div class="cg-cell num cg-row-f">47</div>
+      <div class="cg-cell num cg-row-f">24</div>
+      <div class="cg-cell num cg-row-f">11</div>
+      <!-- F2 rows -->
+      <div class="cg-cell name cg-row-f2">AD06 — Caminhão <span class="camp-pill pill-f2">V2</span></div>
+      <div class="cg-cell num cg-row-f2">R$ 9</div>
+      <div class="cg-cell num cg-row-f2">2.608</div>
+      <div class="cg-cell num cg-row-f2">64</div>
+      <div class="cg-cell num cg-row-f2">2.608</div>
+      <div class="cg-cell num cg-row-f2" style="color:#6ee7b7;font-weight:800">370</div>
+      <div class="cg-cell num cg-row-f2" style="color:#a78bfa;font-weight:800">197</div>
+      <div class="cg-cell num cg-row-f2" style="color:#6ee7b7;font-weight:800">54</div>
+      <div class="cg-cell name cg-row-f2">AD07 — DFT <span class="camp-pill pill-f2">V2</span></div>
+      <div class="cg-cell num cg-row-f2">R$ 3</div>
+      <div class="cg-cell num cg-row-f2">634</div>
+      <div class="cg-cell num cg-row-f2">7</div>
+      <div class="cg-cell num cg-row-f2">628</div>
+      <div class="cg-cell num cg-row-f2">50</div>
+      <div class="cg-cell num cg-row-f2">22</div>
+      <div class="cg-cell num cg-row-f2">6</div>
+      <div class="cg-cell name cg-row-f2">AD08 — Log. Barata <span class="camp-pill pill-f2">V2</span></div>
+      <div class="cg-cell num cg-row-f2">R$ 0</div>
+      <div class="cg-cell num cg-row-f2">95</div>
+      <div class="cg-cell num cg-row-f2">1</div>
+      <div class="cg-cell num cg-row-f2">95</div>
+      <div class="cg-cell num cg-row-f2">5</div>
+      <div class="cg-cell num cg-row-f2">4</div>
+      <div class="cg-cell num cg-row-f2">1</div>
+    </div>
   </div>
 
 </main>
