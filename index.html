@@ -369,50 +369,13 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
 }
 .mkpi-bench b { color:rgba(255,255,255,0.55); }
 
-.creatives-grid-wrap {
-  display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
-}
-.creative-card {
-  background:var(--card); border:1px solid var(--border); border-radius:14px;
-  padding:20px; position:relative; overflow:hidden;
-  transition:transform .2s, box-shadow .2s;
-}
-.creative-card:hover { transform:translateY(-3px); box-shadow:0 8px 28px rgba(0,0,0,0.4); }
-.creative-card.cv1::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:3px;
-  background:linear-gradient(90deg,#1877f2,#42a5f5); border-radius:14px 14px 0 0;
-}
-.creative-card.cv2::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:3px;
-  background:linear-gradient(90deg,#7928ca,#a855f7); border-radius:14px 14px 0 0;
-}
-.cr-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px; }
-.cr-name { font-size:0.85rem; font-weight:800; line-height:1.3; }
-.cr-sub  { font-size:0.68rem; color:var(--muted); margin-top:3px; }
 
-.cr-rates { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px; }
-.cr-rate {
-  background:var(--card-alt); border:1px solid var(--border);
-  border-radius:10px; padding:10px 12px;
-}
-.cr-rate-lbl { font-size:0.6rem; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
-.cr-rate-val { font-size:1.15rem; font-weight:900; }
-.cr-rate-val.bad    { color:#ef4444; }
-.cr-rate-val.medio  { color:#f59e0b; }
-.cr-rate-val.bom    { color:#6ee7b7; }
-.cr-rate-val.otimo  { color:#34d399; }
-.cr-rate-bench { font-size:0.55rem; color:var(--muted2); margin-top:3px; line-height:1.4; }
 
-.cr-funnel { display:flex; align-items:center; gap:4px; padding-top:12px; border-top:1px solid var(--border); }
-.cr-fstep { flex:1; text-align:center; }
-.cr-fstep-lbl { font-size:0.58rem; color:var(--muted); font-weight:700; text-transform:uppercase; margin-bottom:3px; }
-.cr-fstep-val { font-size:0.88rem; font-weight:900; }
-.cr-farrow { color:var(--muted2); font-size:0.85rem; flex-shrink:0; }
 
-.cr-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-bottom:12px; }
-.cr-stat { text-align:center; }
-.cr-stat-lbl { font-size:0.58rem; color:var(--muted); font-weight:700; text-transform:uppercase; }
-.cr-stat-val { font-size:0.82rem; font-weight:800; margin-top:1px; }
+
+
+
+
 
 /* camp summary cards */
 .meta-camp-sum { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px; }
@@ -428,6 +391,48 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
 .ms-metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
 .ms-m-lbl { font-size:0.6rem; color:var(--muted); font-weight:700; text-transform:uppercase; }
 .ms-m-val { font-size:0.88rem; font-weight:800; margin-top:2px; }
+
+
+/* ── CREATIVES TABLE ─────────────────────────────────────────────── */
+.cr-table-wrap {
+  background:var(--card); border:1px solid var(--border); border-radius:16px;
+  overflow:hidden;
+}
+.cr-table { width:100%; border-collapse:collapse; font-size:0.8rem; }
+.cr-table thead tr { background:var(--card-alt); }
+.cr-table thead th {
+  padding:11px 14px; text-align:left;
+  font-size:0.62rem; font-weight:800; letter-spacing:1px;
+  text-transform:uppercase; color:var(--muted); white-space:nowrap;
+}
+.cr-table tbody tr { border-bottom:1px solid var(--border); transition:background .12s; }
+.cr-table tbody tr:last-child { border-bottom:none; }
+.cr-table tbody tr:hover { background:rgba(255,255,255,0.03); }
+.cr-table tbody td { padding:11px 14px; color:rgba(255,255,255,0.85); white-space:nowrap; }
+.cr-table td.cr-name { font-weight:800; color:var(--white); max-width:220px; white-space:normal; }
+.cr-table td.num { text-align:right; }
+.cr-table td.rate { text-align:right; font-weight:800; }
+.rate-bad    { color:#ef4444; }
+.rate-medio  { color:#f59e0b; }
+.rate-bom    { color:#6ee7b7; }
+.rate-otimo  { color:#34d399; }
+.status-ativo { color:#34d399; font-weight:800; font-size:0.75rem; }
+.acao-pill {
+  display:inline-block; padding:4px 10px; border-radius:6px;
+  font-size:0.65rem; font-weight:800; letter-spacing:0.5px; white-space:nowrap;
+}
+.acao-escalar  { background:rgba(52,168,83,0.25);  color:#34d399; }
+.acao-ruim     { background:rgba(239,68,68,0.25);   color:#f87171; }
+.acao-aguardar { background:rgba(245,158,11,0.25);  color:#fbbf24; }
+.acao-basica   { background:rgba(255,255,255,0.08); color:var(--muted); }
+.anuncio-btn {
+  display:inline-flex; align-items:center; gap:4px;
+  background:rgba(255,255,255,0.06); border:1px solid var(--border);
+  color:var(--muted); padding:4px 10px; border-radius:6px;
+  font-size:0.68rem; font-weight:700; text-decoration:none;
+  transition:border-color .15s, color .15s;
+}
+.anuncio-btn:hover { border-color:var(--orange); color:var(--orange); }
 
 </style>
 </head>
@@ -714,13 +719,6 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
     </div>
   </div>
 
-  <!-- Creative cards -->
-  <div class="creatives-grid-wrap">
-
-    <div class="creative-card cv1">
-      <div class="cr-top">
-        <div>
-          <div class="cr-name">AD01 — Deixa Eu Te Falar</div>
           <div class="cr-sub">DFT_Visitas_F &nbsp;<span class="camp-pill pill-f">V1</span></div>
         </div>
         <div style="font-size:1rem;font-weight:900;color:var(--orange)">R$ 7,00</div>
@@ -932,6 +930,108 @@ tbody td:nth-child(2){ font-weight:700; color:var(--white); }
         <div class="cr-fstep"><div class="cr-fstep-lbl">75%</div><div class="cr-fstep-val" style="color:#6ee7b7">1</div></div>
       </div>
     </div>
+  </div>
+
+
+  <!-- Creative table -->
+  <div class="cr-table-wrap">
+    <table class="cr-table">
+      <thead>
+        <tr>
+          <th>Criativo</th>
+          <th>Status</th>
+          <th>Investido</th>
+          <th>Alcance</th>
+          <th>Vis. 3s</th>
+          <th>Cliques</th>
+          <th>CPM</th>
+          <th>Hooke</th>
+          <th>Retenção</th>
+          <th>Ação</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="cr-name">AD01_VID_Deixa_Eu_Te_Falar <span class="camp-pill pill-f">V1</span></td>
+        <td><span class="status-ativo">Ativo</span></td>
+        <td class="num">R$ 7,00</td>
+        <td class="num">2,222</td>
+        <td class="num">122</td>
+        <td class="num">44</td>
+        <td class="num">R$ 3,04</td>
+        <td class="rate rate-bad">5.3%</td>
+        <td class="rate rate-bom">37.7%</td>
+        <td><span class="acao-pill acao-aguardar">AGUARDAR DADOS</span></td>
+        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpetKhgFK3/" target="_blank">↗ Anúncio</a></td>
+      </tr>
+      <tr>
+        <td class="cr-name">AD02_VID_Por_Tras <span class="camp-pill pill-f">V1</span></td>
+        <td><span class="status-ativo">Ativo</span></td>
+        <td class="num">R$ 1,00</td>
+        <td class="num">223</td>
+        <td class="num">21</td>
+        <td class="num">9</td>
+        <td class="num">R$ 4,46</td>
+        <td class="rate rate-bad">9.4%</td>
+        <td class="rate rate-otimo">61.9%</td>
+        <td><span class="acao-pill acao-basica">AMOSTRA BÁSICA</span></td>
+        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpe457gEaS/" target="_blank">↗ Anúncio</a></td>
+      </tr>
+      <tr>
+        <td class="cr-name">AD03_VID_E_Se_Sua_Carga <span class="camp-pill pill-f">V1</span></td>
+        <td><span class="status-ativo">Ativo</span></td>
+        <td class="num">R$ 3,00</td>
+        <td class="num">826</td>
+        <td class="num">47</td>
+        <td class="num">11</td>
+        <td class="num">R$ 3,60</td>
+        <td class="rate rate-bad">5.6%</td>
+        <td class="rate rate-otimo">51.1%</td>
+        <td><span class="acao-pill acao-basica">AMOSTRA BÁSICA</span></td>
+        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpfClqgGax/" target="_blank">↗ Anúncio</a></td>
+      </tr>
+      <tr>
+        <td class="cr-name">AD06_VID_Caminhao <span class="camp-pill pill-f2">V2</span></td>
+        <td><span class="status-ativo">Ativo</span></td>
+        <td class="num">R$ 9,00</td>
+        <td class="num">2,608</td>
+        <td class="num">370</td>
+        <td class="num">64</td>
+        <td class="num">R$ 3,45</td>
+        <td class="rate rate-bad">14.2%</td>
+        <td class="rate rate-otimo">53.2%</td>
+        <td><span class="acao-pill acao-aguardar">AGUARDAR DADOS</span></td>
+        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpfkx8AHdk/" target="_blank">↗ Anúncio</a></td>
+      </tr>
+      <tr>
+        <td class="cr-name">AD07_VID_DFT <span class="camp-pill pill-f2">V2</span></td>
+        <td><span class="status-ativo">Ativo</span></td>
+        <td class="num">R$ 3,00</td>
+        <td class="num">628</td>
+        <td class="num">50</td>
+        <td class="num">7</td>
+        <td class="num">R$ 4,73</td>
+        <td class="rate rate-bad">7.9%</td>
+        <td class="rate rate-bom">44.0%</td>
+        <td><span class="acao-pill acao-basica">AMOSTRA BÁSICA</span></td>
+        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpfjz5AL8r/" target="_blank">↗ Anúncio</a></td>
+      </tr>
+      <tr>
+        <td class="cr-name">AD08_VID_Log_Barata <span class="camp-pill pill-f2">V2</span></td>
+        <td><span class="status-ativo">Ativo</span></td>
+        <td class="num">R$ 0,00</td>
+        <td class="num">95</td>
+        <td class="num">5</td>
+        <td class="num">1</td>
+        <td class="num">R$ 0,00</td>
+        <td class="rate rate-bad">5.3%</td>
+        <td class="rate rate-otimo">80.0%</td>
+        <td><span class="acao-pill acao-basica">AMOSTRA BÁSICA</span></td>
+        <td><a class="anuncio-btn" href="https://www.instagram.com/p/DXpfhvOAOcp/" target="_blank">↗ Anúncio</a></td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 
 </main>
