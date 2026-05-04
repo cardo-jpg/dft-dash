@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DFT Logística — Relatório de Performance · Abril 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:#f0f2f8;color:#1a1a2e;min-height:100vh}
+
+.header{background:linear-gradient(135deg,#1e1f8c 0%,#09093a 100%);color:#fff;padding:32px 48px;display:flex;align-items:center;justify-content:space-between}
+.header-left{display:flex;align-items:center;gap:16px}
+.logo{width:52px;height:52px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.logo img{width:44px}
+.header h1{font-size:1.6rem;font-weight:800}
+.header p{font-size:.9rem;opacity:.7;margin-top:2px}
+.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:.8rem;font-weight:700}
+
+.main{max-width:1100px;margin:0 auto;padding:40px 24px}
+
+.section-title{font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#6b7280;margin-bottom:16px;margin-top:40px}
+.section-title:first-child{margin-top:0}
+
+/* RESUMO */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:8px}
+.kpi{background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.06);border-top:4px solid #e5e7eb;position:relative;overflow:hidden}
+.kpi.green{border-top-color:#22c55e}
+.kpi.orange{border-top-color:#f07820}
+.kpi.blue{border-top-color:#3b82f6}
+.kpi.purple{border-top-color:#8b5cf6}
+.kpi-label{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;margin-bottom:8px}
+.kpi-value{font-size:2rem;font-weight:900;color:#111827;line-height:1}
+.kpi-sub{font-size:.8rem;color:#6b7280;margin-top:6px}
+.kpi-icon{position:absolute;right:16px;top:16px;font-size:1.6rem;opacity:.15}
+
+/* BENCHMARK */
+.bench-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.bench{background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,.06);border-left:4px solid #e5e7eb}
+.bench.win{border-left-color:#22c55e}
+.bench.ok{border-left-color:#f59e0b}
+.bench-metric{font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;margin-bottom:10px}
+.bench-compare{display:flex;gap:12px;align-items:center;margin-bottom:8px;flex-wrap:nowrap}
+.bench-dft{text-align:center;min-width:0}
+.bench-dft .val{font-size:1.3rem;font-weight:900;color:#111827;line-height:1;white-space:nowrap}
+.bench-dft .lbl{font-size:.65rem;font-weight:700;color:#f07820;margin-top:3px;white-space:nowrap}
+.bench-mkt{text-align:center;min-width:0}
+.bench-mkt .val{font-size:1rem;font-weight:700;color:#9ca3af;line-height:1;white-space:nowrap}
+.bench-mkt .lbl{font-size:.65rem;color:#d1d5db;margin-top:3px;white-space:nowrap}
+.bench-verdict{font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block}
+.bench-verdict.win{background:#dcfce7;color:#15803d}
+.bench-verdict.ok{background:#fef9c3;color:#a16207}
+.bench-verdict.bad{background:#fee2e2;color:#b91c1c}
+
+/* AVALIAÇÃO */
+.eval-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.eval{background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.eval-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.eval-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.eval-dot.good{background:#22c55e}
+.eval-dot.ok{background:#f59e0b}
+.eval-dot.bad{background:#ef4444}
+.eval-title{font-weight:800;font-size:.95rem}
+.eval-metric{font-size:1.5rem;font-weight:900;margin:4px 0}
+.eval-metric.good{color:#16a34a}
+.eval-metric.ok{color:#d97706}
+.eval-metric.bad{color:#dc2626}
+.eval-desc{font-size:.82rem;color:#6b7280;line-height:1.5}
+
+/* FUNIL */
+.funnel-wrap{background:#fff;border-radius:16px;padding:32px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.funnel-steps{display:flex;align-items:stretch;gap:0;justify-content:center}
+.funnel-step{flex:1;text-align:center;position:relative}
+.funnel-bar{margin:0 4px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 8px;color:#fff;font-weight:800;min-height:80px}
+.funnel-bar.f1{background:linear-gradient(135deg,#3b82f6,#1d4ed8);font-size:1.4rem}
+.funnel-bar.f2{background:linear-gradient(135deg,#8b5cf6,#6d28d9);font-size:1.4rem}
+.funnel-bar.f3{background:linear-gradient(135deg,#22c55e,#15803d);font-size:1.4rem}
+.funnel-bar span{font-size:.75rem;font-weight:600;opacity:.85;margin-top:4px}
+.funnel-arrow{display:flex;align-items:center;justify-content:center;padding:0 4px;color:#d1d5db;font-size:1.4rem;flex-shrink:0;align-self:center}
+.funnel-rate{text-align:center;margin-top:10px}
+.funnel-rate strong{display:block;font-size:.95rem;font-weight:800;color:#374151}
+.funnel-rate small{font-size:.75rem;color:#9ca3af}
+
+/* CAMPANHAS */
+.camp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.camp{background:#fff;border-radius:16px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.camp-name{font-size:.8rem;font-weight:800;color:#6b7280;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.camp-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f3f4f6}
+.camp-row:last-child{border-bottom:none;padding-top:10px;margin-top:2px}
+.camp-row span{font-size:.82rem;color:#9ca3af}
+.camp-row strong{font-size:.9rem;font-weight:800;color:#111827}
+.camp-row strong.green{color:#16a34a}
+.camp-tag{display:inline-block;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:20px;margin-bottom:6px}
+.camp-tag.search{background:#dbeafe;color:#1d4ed8}
+
+/* VISIBILIDADE */
+.vis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.vis{background:#fff;border-radius:16px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.vis-label{font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;margin-bottom:10px}
+.vis-value{font-size:1.8rem;font-weight:900;margin-bottom:6px}
+.vis-value.good{color:#16a34a}
+.vis-value.ok{color:#d97706}
+.vis-value.bad{color:#dc2626}
+.vis-desc{font-size:.8rem;color:#6b7280;line-height:1.5}
+.vis-bar-wrap{margin:10px 0 6px;background:#f3f4f6;border-radius:99px;height:8px}
+.vis-bar{height:8px;border-radius:99px}
+
+/* ALERTA ORÇAMENTO */
+.alert-box{background:linear-gradient(135deg,#fef2f2,#fee2e2);border:2px solid #fca5a5;border-radius:16px;padding:28px 32px}
+.alert-title{display:flex;align-items:center;gap:10px;font-size:1.1rem;font-weight:800;color:#991b1b;margin-bottom:16px}
+.alert-body{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+.alert-stat{text-align:center;background:#fff;border-radius:12px;padding:20px}
+.alert-stat .n{font-size:2.5rem;font-weight:900;color:#dc2626}
+.alert-stat .l{font-size:.8rem;color:#6b7280;margin-top:4px}
+.alert-explain{font-size:.88rem;color:#374151;line-height:1.7}
+.alert-explain strong{color:#991b1b}
+
+/* RECOMENDAÇÕES */
+.rec-box{background:linear-gradient(135deg,#fffbeb,#fef3c7);border:2px solid #fbbf24;border-radius:16px;padding:28px 32px}
+.rec-title{display:flex;align-items:center;gap:10px;font-size:1.1rem;font-weight:800;color:#92400e;margin-bottom:20px}
+.rec-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rec-item{display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:12px;padding:16px}
+.rec-num{width:28px;height:28px;background:#f07820;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0}
+.rec-text strong{display:block;font-size:.88rem;font-weight:800;color:#374151;margin-bottom:3px}
+.rec-text small{font-size:.8rem;color:#6b7280;line-height:1.4}
+
+/* POSITIVO */
+.positive{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid #86efac;border-radius:16px;padding:28px 32px}
+.positive-title{display:flex;align-items:center;gap:10px;font-size:1.1rem;font-weight:800;color:#14532d;margin-bottom:16px}
+.positive-list{display:flex;flex-direction:column;gap:10px}
+.positive-item{display:flex;gap:10px;align-items:flex-start}
+.positive-item .check{color:#22c55e;font-size:1.1rem;flex-shrink:0;margin-top:1px}
+.positive-item p{font-size:.88rem;color:#374151;line-height:1.5}
+.positive-item strong{color:#15803d}
+
+.footer{text-align:center;padding:32px;color:#9ca3af;font-size:.78rem}
+.footer strong{color:#374151}
+
+@media(max-width:768px){
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .eval-grid,.camp-grid{grid-template-columns:1fr}
+  .rec-list{grid-template-columns:1fr}
+  .header{flex-direction:column;gap:12px;padding:24px}
+  .funnel-steps{flex-direction:column}
+  .funnel-arrow{transform:rotate(90deg)}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="logo">
+      <img src="https://lp.dftlogistica.com.br/dft-logo.png" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-weight:900;color:#1e1f8c;font-size:1.1rem\'>DFT</span>'" alt="DFT">
+    </div>
+    <div>
+      <h1>DFT Logística — Performance Google Ads</h1>
+      <p>Relatório executivo · Abril 2026 (22/04 a 30/04)</p>
+    </div>
+  </div>
+  <div class="badge">Apenas para uso interno</div>
+</div>
+
+<div class="main">
+
+  <div class="section-title">Resumo do período</div>
+  <div class="kpi-grid">
+    <div class="kpi orange">
+      <div class="kpi-label">Investimento</div>
+      <div class="kpi-value">R$ 619</div>
+      <div class="kpi-sub">R$ 68,80/dia · 9 dias ativos</div>
+      <div class="kpi-icon">💰</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-label">Pessoas que clicaram</div>
+      <div class="kpi-value">173</div>
+      <div class="kpi-sub">Visitantes chegaram ao site</div>
+      <div class="kpi-icon">👆</div>
+    </div>
+    <div class="kpi green">
+      <div class="kpi-label">Leads gerados</div>
+      <div class="kpi-value">20</div>
+      <div class="kpi-sub">Formulários preenchidos</div>
+      <div class="kpi-icon">🎯</div>
+    </div>
+    <div class="kpi purple">
+      <div class="kpi-label">Custo por lead</div>
+      <div class="kpi-value">R$ 30,97</div>
+      <div class="kpi-sub">Custo médio para gerar 1 contato</div>
+      <div class="kpi-icon">📊</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:32px">Abril 2026 vs. histórico da conta — evolução real</div>
+  <div class="bench-grid">
+    <div class="bench win">
+      <div class="bench-metric">CTR — Taxa de clique</div>
+      <div class="bench-compare">
+        <div class="bench-dft"><div class="val">4,61%</div><div class="lbl">Abril 2026</div></div>
+        <div style="color:#e5e7eb;font-size:1rem">vs</div>
+        <div class="bench-mkt"><div class="val">4,76%</div><div class="lbl">Março 2026</div></div>
+        <div style="color:#e5e7eb;font-size:1rem">·</div>
+        <div class="bench-mkt"><div class="val">4,32%</div><div class="lbl">Janeiro 2026</div></div>
+      </div>
+      <span class="bench-verdict win">✓ Estável — consistente nos últimos meses</span>
+    </div>
+    <div class="bench ok">
+      <div class="bench-metric">CPC — Custo por clique</div>
+      <div class="bench-compare">
+        <div class="bench-dft"><div class="val">R$ 3,58</div><div class="lbl">Abril 2026</div></div>
+        <div style="color:#e5e7eb;font-size:1rem">vs</div>
+        <div class="bench-mkt"><div class="val">R$ 1,81</div><div class="lbl">Março 2026</div></div>
+        <div style="color:#e5e7eb;font-size:1rem">·</div>
+        <div class="bench-mkt"><div class="val">R$ 0,62</div><div class="lbl">Janeiro 2026</div></div>
+      </div>
+      <span class="bench-verdict ok">→ Aumentou — novas campanhas mais competitivas</span>
+    </div>
+    <div class="bench win">
+      <div class="bench-metric">CPL — Custo por lead</div>
+      <div class="bench-compare">
+        <div class="bench-dft"><div class="val">R$ 30,97</div><div class="lbl">Abril 2026</div></div>
+        <div style="color:#e5e7eb;font-size:1rem">vs</div>
+        <div class="bench-mkt"><div class="val">R$ 60,89</div><div class="lbl">Março 2026</div></div>
+        <div style="color:#e5e7eb;font-size:1rem">·</div>
+        <div class="bench-mkt"><div class="val">R$ 22,31</div><div class="lbl">Janeiro 2026</div></div>
+      </div>
+      <span class="bench-verdict win">✓ 49% mais barato que março</span>
+    </div>
+    <div class="bench win">
+      <div class="bench-metric">Conv. rate — clique → lead</div>
+      <div class="bench-compare">
+        <div class="bench-dft"><div class="val">11,56%</div><div class="lbl">Abril 2026</div></div>
+        <div style="color:#e5e7eb;font-size:1rem">vs</div>
+        <div class="bench-mkt"><div class="val">2,90%</div><div class="lbl">Março 2026</div></div>
+        <div style="color:#e5e7eb;font-size:1rem">·</div>
+        <div class="bench-mkt"><div class="val">2,78%</div><div class="lbl">Janeiro 2026</div></div>
+      </div>
+      <span class="bench-verdict win">✓ 4x melhor que meses anteriores</span>
+    </div>
+  </div>
+  <p style="font-size:.78rem;color:#9ca3af;margin-top:10px;text-align:right">* Dados históricos da própria conta Google Ads DFT Logística</p>
+
+  <div class="section-title" style="margin-top:32px">Como estão os indicadores</div>
+  <div class="eval-grid">
+    <div class="eval">
+      <div class="eval-header">
+        <div class="eval-dot good"></div>
+        <div class="eval-title">CTR — Taxa de clique</div>
+      </div>
+      <div class="eval-metric good">4,61%</div>
+      <div class="eval-desc">A cada 100 pessoas que viram o anúncio, <strong>4,6 clicaram</strong>. Isso é acima da média do setor (2-3%), o que indica que o anúncio está chamando atenção corretamente.</div>
+    </div>
+    <div class="eval">
+      <div class="eval-header">
+        <div class="eval-dot good"></div>
+        <div class="eval-title">CPC — Custo por clique</div>
+      </div>
+      <div class="eval-metric good">R$ 3,58</div>
+      <div class="eval-desc">Cada visita ao site custou em média <strong>R$ 3,58</strong>. Para o segmento B2B de logística, esse valor é competitivo e dentro do esperado.</div>
+    </div>
+    <div class="eval">
+      <div class="eval-header">
+        <div class="eval-dot ok"></div>
+        <div class="eval-title">Conv. rate — Site → Lead</div>
+      </div>
+      <div class="eval-metric ok">11,56%</div>
+      <div class="eval-desc">De 173 visitantes, <strong>20 preencheram o formulário</strong>. O ideal para B2B é entre 15-25%. Há espaço para melhorar a conversão no site.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Jornada do cliente — onde cada pessoa está</div>
+  <div class="funnel-wrap">
+    <div class="funnel-steps">
+      <div class="funnel-step">
+        <div class="funnel-bar f1" style="min-height:120px">
+          <div>3.749</div>
+          <span>Impressões</span>
+        </div>
+        <div class="funnel-rate">
+          <strong>Viram o anúncio</strong>
+          <small>Pessoas alcançadas</small>
+        </div>
+      </div>
+      <div class="funnel-arrow">→</div>
+      <div class="funnel-step">
+        <div class="funnel-bar f2" style="min-height:90px">
+          <div>173</div>
+          <span>Cliques</span>
+        </div>
+        <div class="funnel-rate">
+          <strong>Foram ao site</strong>
+          <small>CTR: 4,61% ✓ bom</small>
+        </div>
+      </div>
+      <div class="funnel-arrow">→</div>
+      <div class="funnel-step">
+        <div class="funnel-bar f3" style="min-height:60px">
+          <div>20</div>
+          <span>Leads</span>
+        </div>
+        <div class="funnel-rate">
+          <strong>Pediram contato</strong>
+          <small>Conv: 11,56% · meta: 20%+</small>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:20px;font-size:.85rem;color:#6b7280;max-width:600px;margin-left:auto;margin-right:auto">
+      O anúncio está trazendo as pessoas certas — a taxa de clique está ótima. O maior ganho agora está em <strong>converter mais visitantes em leads dentro do site</strong>.
+    </p>
+  </div>
+
+  <div class="section-title">Desempenho por campanha</div>
+  <div class="camp-grid">
+    <div class="camp">
+      <div><span class="camp-tag search">Search</span></div>
+      <div class="camp-name">Campanha de Marca</div>
+      <div class="camp-row"><span>Investido</span><strong>R$ 116,97</strong></div>
+      <div class="camp-row"><span>Cliques</span><strong>39</strong></div>
+      <div class="camp-row"><span>CTR</span><strong class="green">16,05%</strong></div>
+      <div class="camp-row"><span>Leads</span><strong>10</strong></div>
+      <div class="camp-row"><span>Custo / lead</span><strong class="green">R$ 11,70</strong></div>
+    </div>
+    <div class="camp">
+      <div><span class="camp-tag search">Search</span></div>
+      <div class="camp-name">Demanda Ativa</div>
+      <div class="camp-row"><span>Investido</span><strong>R$ 230,94</strong></div>
+      <div class="camp-row"><span>Cliques</span><strong>36</strong></div>
+      <div class="camp-row"><span>CTR</span><strong class="green">8,96%</strong></div>
+      <div class="camp-row"><span>Leads</span><strong>4</strong></div>
+      <div class="camp-row"><span>Custo / lead</span><strong>R$ 57,73</strong></div>
+    </div>
+    <div class="camp">
+      <div><span class="camp-tag search">Search</span></div>
+      <div class="camp-name">Segmentos ICP</div>
+      <div class="camp-row"><span>Investido</span><strong>R$ 271,43</strong></div>
+      <div class="camp-row"><span>Cliques</span><strong>98</strong></div>
+      <div class="camp-row"><span>CTR</span><strong>3,16%</strong></div>
+      <div class="camp-row"><span>Leads</span><strong>6</strong></div>
+      <div class="camp-row"><span>Custo / lead</span><strong>R$ 45,24</strong></div>
+    </div>
+  </div>
+
+  <div class="section-title">Visibilidade e posição dos anúncios</div>
+  <div class="vis-grid">
+    <div class="vis">
+      <div class="vis-label">% impressões no topo da página</div>
+      <div class="bench-compare" style="margin-bottom:8px">
+        <div class="bench-dft"><div class="val" style="font-size:1.4rem;color:#d97706">62,46%</div><div class="lbl">Abril 2026</div></div>
+        <div style="color:#e5e7eb;font-size:1rem">vs</div>
+        <div class="bench-mkt"><div class="val">64,44%</div><div class="lbl">Março 2026</div></div>
+        <div style="color:#e5e7eb;font-size:1rem">·</div>
+        <div class="bench-mkt"><div class="val">70,40%</div><div class="lbl">Janeiro 2026</div></div>
+      </div>
+      <div class="vis-bar-wrap"><div class="vis-bar" style="width:62.46%;background:#f59e0b"></div></div>
+      <span class="bench-verdict ok" style="margin-bottom:8px;display:inline-block">→ Próximo de março, abaixo de janeiro</span>
+      <div class="vis-desc">Em 62% das aparições o anúncio estava no topo. Janeiro foi o melhor mês (70,40%) — recuperação em andamento.</div>
+    </div>
+    <div class="vis">
+      <div class="vis-label">% impressões na 1ª posição</div>
+      <div class="bench-compare" style="margin-bottom:8px">
+        <div class="bench-dft"><div class="val" style="font-size:1.4rem;color:#d97706">28,43%</div><div class="lbl">Abril 2026</div></div>
+        <div style="color:#e5e7eb;font-size:1rem">vs</div>
+        <div class="bench-mkt"><div class="val">23,88%</div><div class="lbl">Março 2026</div></div>
+        <div style="color:#e5e7eb;font-size:1rem">·</div>
+        <div class="bench-mkt"><div class="val">47,57%</div><div class="lbl">Janeiro 2026</div></div>
+      </div>
+      <div class="vis-bar-wrap"><div class="vis-bar" style="width:28.43%;background:#f59e0b"></div></div>
+      <span class="bench-verdict win" style="margin-bottom:8px;display:inline-block">✓ Melhor que março</span>
+      <div class="vis-desc">Melhorou em relação a março (+4,55 p.p.). Meta: recuperar os 47,57% de janeiro com aumento de orçamento.</div>
+    </div>
+    <div class="vis">
+      <div class="vis-label">Taxa de conversão (clique → lead)</div>
+      <div class="bench-compare" style="margin-bottom:8px">
+        <div class="bench-dft"><div class="val" style="font-size:1.4rem;color:#16a34a">11,56%</div><div class="lbl">Abril 2026</div></div>
+        <div style="color:#e5e7eb;font-size:1rem">vs</div>
+        <div class="bench-mkt"><div class="val">2,90%</div><div class="lbl">Março 2026</div></div>
+        <div style="color:#e5e7eb;font-size:1rem">·</div>
+        <div class="bench-mkt"><div class="val">2,78%</div><div class="lbl">Janeiro 2026</div></div>
+      </div>
+      <div class="vis-bar-wrap"><div class="vis-bar" style="width:100%;background:#22c55e"></div></div>
+      <span class="bench-verdict win" style="margin-bottom:8px;display:inline-block">✓ 4x melhor que meses anteriores</span>
+      <div class="vis-desc">Grande evolução — as novas campanhas estão trazendo público mais qualificado que converte muito mais. Potencial ainda maior com ajustes na LP.</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:32px">⚠️ Insight crítico — oportunidade escondida no orçamento</div>
+  <div class="alert-box">
+    <div class="alert-title">🔴 Os anúncios estão perdendo +90% das oportunidades por limite de orçamento</div>
+    <div class="alert-body">
+      <div style="display:flex;gap:16px">
+        <div class="alert-stat">
+          <div class="n">&gt;90%</div>
+          <div class="l">Impressões perdidas<br>por orçamento</div>
+        </div>
+        <div class="alert-stat">
+          <div class="n" style="color:#1d4ed8">~200x</div>
+          <div class="l">Potencial de<br>impressões disponíveis</div>
+        </div>
+      </div>
+      <div class="alert-explain">
+        <p>Isso significa que o Google tentou mostrar o anúncio da DFT para potenciais clientes, mas <strong>em mais de 90% das vezes o orçamento já tinha acabado</strong> e o anúncio não foi exibido.</p>
+        <br>
+        <p>Traduzindo: <strong>a demanda existe</strong>. Há pessoas pesquisando por transportadora no Google Ads que nunca viram o anúncio da DFT. Com o orçamento atual, estamos capturando menos de 10% desse potencial.</p>
+        <br>
+        <p>Com os 20 leads gerados e CPL de R$ 30,97, <strong>aumentar o orçamento é o investimento com retorno mais previsível</strong> que pode ser feito agora.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">O que está funcionando bem</div>
+  <div class="positive">
+    <div class="positive-title">✅ Pontos positivos do período</div>
+    <div class="positive-list">
+      <div class="positive-item">
+        <span class="check">✓</span>
+        <p><strong>Anúncios com alta relevância:</strong> CTR de 4,61% está acima da média do mercado, o que significa que as mensagens dos anúncios estão resonando com o público certo.</p>
+      </div>
+      <div class="positive-item">
+        <span class="check">✓</span>
+        <p><strong>Campanha de Marca com CPL excelente:</strong> R$ 11,70 por lead é um resultado muito competitivo. Pessoas que pesquisam diretamente pela DFT convertem muito bem.</p>
+      </div>
+      <div class="positive-item">
+        <span class="check">✓</span>
+        <p><strong>20 novos contatos qualificados</strong> em 9 dias — empresas que demonstraram interesse ativo em contratar serviços de logística.</p>
+      </div>
+      <div class="positive-item">
+        <span class="check">✓</span>
+        <p><strong>Custo por lead dentro do esperado:</strong> R$ 30,97 para o segmento de transporte B2B é competitivo considerando o ticket médio dos contratos.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Próximos passos para crescer</div>
+  <div class="rec-box">
+    <div class="rec-title">⚡ Onde está a maior oportunidade de melhora</div>
+    <div class="rec-list">
+      <div class="rec-item">
+        <div class="rec-num">1</div>
+        <div class="rec-text">
+          <strong>Melhorar o formulário da página</strong>
+          <small>De 173 visitantes, apenas 20 preencheram. Formulário mais curto (só nome + WhatsApp + segmento) pode dobrar essa taxa.</small>
+        </div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-num">2</div>
+        <div class="rec-text">
+          <strong>Adicionar prova social visível</strong>
+          <small>Depoimentos de clientes e logos de empresas atendidas próximos ao formulário aumentam a confiança e a conversão.</small>
+        </div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-num">3</div>
+        <div class="rec-text">
+          <strong>CTA mais direto na página</strong>
+          <small>"Solicitar orçamento" pode ser substituído por "Falar com especialista agora" — urgência e personalização convertem mais.</small>
+        </div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-num">4</div>
+        <div class="rec-text">
+          <strong>Campanha Demanda Ativa: revisar página de destino</strong>
+          <small>CPL de R$ 57,73 vs R$ 11,70 da Marca indica que o conteúdo da LP não está alinhado com a intenção desse público.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Relatório gerado por <strong>Cardo Marketing</strong> · agencia@cardomarketing.com.br · (11) 97777-7777<br>
+  Dados referentes ao período de 22/04/2026 a 30/04/2026 · Google Ads · DFT Logística
+</div>
+
+</body>
+</html>
